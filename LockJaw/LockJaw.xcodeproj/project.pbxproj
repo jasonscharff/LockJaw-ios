@@ -1,0 +1,349 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		BE41C3151D4426FB0065130D /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = BE41C3141D4426FB0065130D /* main.m */; };
+		BE41C3181D4426FB0065130D /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = BE41C3171D4426FB0065130D /* AppDelegate.m */; };
+		BE41C3201D4426FB0065130D /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = BE41C31F1D4426FB0065130D /* Assets.xcassets */; };
+		BE41C3231D4426FB0065130D /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = BE41C3211D4426FB0065130D /* LaunchScreen.storyboard */; };
+		BE41C32C1D4429E70065130D /* LKJBluetoothController.m in Sources */ = {isa = PBXBuildFile; fileRef = BE41C32B1D4429E70065130D /* LKJBluetoothController.m */; };
+		BE41C3361D4441520065130D /* AutolayoutHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = BE41C3331D4441520065130D /* AutolayoutHelper.m */; };
+		BE41C3371D4441520065130D /* LinearLayout.m in Sources */ = {isa = PBXBuildFile; fileRef = BE41C3351D4441520065130D /* LinearLayout.m */; };
+		BE41C33B1D4443F00065130D /* CBPeripheral+ExpirationDate.m in Sources */ = {isa = PBXBuildFile; fileRef = BE41C33A1D4443F00065130D /* CBPeripheral+ExpirationDate.m */; };
+		BE89B5D61D45848B00315066 /* LKJConnectionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BE89B5D51D45848B00315066 /* LKJConnectionViewController.m */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		BE41C3101D4426FB0065130D /* LockJaw.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = LockJaw.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		BE41C3141D4426FB0065130D /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		BE41C3161D4426FB0065130D /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
+		BE41C3171D4426FB0065130D /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
+		BE41C31F1D4426FB0065130D /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		BE41C3221D4426FB0065130D /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		BE41C3241D4426FB0065130D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		BE41C32A1D4429E70065130D /* LKJBluetoothController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LKJBluetoothController.h; sourceTree = "<group>"; };
+		BE41C32B1D4429E70065130D /* LKJBluetoothController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LKJBluetoothController.m; sourceTree = "<group>"; };
+		BE41C3321D4441520065130D /* AutolayoutHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AutolayoutHelper.h; sourceTree = "<group>"; };
+		BE41C3331D4441520065130D /* AutolayoutHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AutolayoutHelper.m; sourceTree = "<group>"; };
+		BE41C3341D4441520065130D /* LinearLayout.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LinearLayout.h; sourceTree = "<group>"; };
+		BE41C3351D4441520065130D /* LinearLayout.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LinearLayout.m; sourceTree = "<group>"; };
+		BE41C3391D4443F00065130D /* CBPeripheral+ExpirationDate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "CBPeripheral+ExpirationDate.h"; sourceTree = "<group>"; };
+		BE41C33A1D4443F00065130D /* CBPeripheral+ExpirationDate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "CBPeripheral+ExpirationDate.m"; sourceTree = "<group>"; };
+		BE89B5D41D45848B00315066 /* LKJConnectionViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LKJConnectionViewController.h; sourceTree = "<group>"; };
+		BE89B5D51D45848B00315066 /* LKJConnectionViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LKJConnectionViewController.m; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		BE41C30D1D4426FB0065130D /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		BE41C3071D4426FB0065130D = {
+			isa = PBXGroup;
+			children = (
+				BE41C3121D4426FB0065130D /* LockJaw */,
+				BE41C3111D4426FB0065130D /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		BE41C3111D4426FB0065130D /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				BE41C3101D4426FB0065130D /* LockJaw.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		BE41C3121D4426FB0065130D /* LockJaw */ = {
+			isa = PBXGroup;
+			children = (
+				BE41C3391D4443F00065130D /* CBPeripheral+ExpirationDate.h */,
+				BE41C33A1D4443F00065130D /* CBPeripheral+ExpirationDate.m */,
+				BE41C3381D4441580065130D /* Third Party */,
+				BE41C3161D4426FB0065130D /* AppDelegate.h */,
+				BE41C3171D4426FB0065130D /* AppDelegate.m */,
+				BE41C3311D4440F60065130D /* StoreController */,
+				BE41C3301D4440ED0065130D /* ViewController */,
+				BE41C31F1D4426FB0065130D /* Assets.xcassets */,
+				BE41C3211D4426FB0065130D /* LaunchScreen.storyboard */,
+				BE41C3241D4426FB0065130D /* Info.plist */,
+				BE41C3131D4426FB0065130D /* Supporting Files */,
+			);
+			path = LockJaw;
+			sourceTree = "<group>";
+		};
+		BE41C3131D4426FB0065130D /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				BE41C3141D4426FB0065130D /* main.m */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		BE41C3301D4440ED0065130D /* ViewController */ = {
+			isa = PBXGroup;
+			children = (
+				BE89B5D41D45848B00315066 /* LKJConnectionViewController.h */,
+				BE89B5D51D45848B00315066 /* LKJConnectionViewController.m */,
+			);
+			name = ViewController;
+			sourceTree = "<group>";
+		};
+		BE41C3311D4440F60065130D /* StoreController */ = {
+			isa = PBXGroup;
+			children = (
+				BE41C32A1D4429E70065130D /* LKJBluetoothController.h */,
+				BE41C32B1D4429E70065130D /* LKJBluetoothController.m */,
+			);
+			name = StoreController;
+			sourceTree = "<group>";
+		};
+		BE41C3381D4441580065130D /* Third Party */ = {
+			isa = PBXGroup;
+			children = (
+				BE41C3321D4441520065130D /* AutolayoutHelper.h */,
+				BE41C3331D4441520065130D /* AutolayoutHelper.m */,
+				BE41C3341D4441520065130D /* LinearLayout.h */,
+				BE41C3351D4441520065130D /* LinearLayout.m */,
+			);
+			name = "Third Party";
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		BE41C30F1D4426FB0065130D /* LockJaw */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = BE41C3271D4426FB0065130D /* Build configuration list for PBXNativeTarget "LockJaw" */;
+			buildPhases = (
+				BE41C30C1D4426FB0065130D /* Sources */,
+				BE41C30D1D4426FB0065130D /* Frameworks */,
+				BE41C30E1D4426FB0065130D /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = LockJaw;
+			productName = LockJaw;
+			productReference = BE41C3101D4426FB0065130D /* LockJaw.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		BE41C3081D4426FB0065130D /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 0800;
+				ORGANIZATIONNAME = "Jason Scharff";
+				TargetAttributes = {
+					BE41C30F1D4426FB0065130D = {
+						CreatedOnToolsVersion = 8.0;
+						DevelopmentTeam = 3R5J785EXT;
+						DevelopmentTeamName = "Gregory Scharff";
+						ProvisioningStyle = Automatic;
+					};
+				};
+			};
+			buildConfigurationList = BE41C30B1D4426FB0065130D /* Build configuration list for PBXProject "LockJaw" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = BE41C3071D4426FB0065130D;
+			productRefGroup = BE41C3111D4426FB0065130D /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				BE41C30F1D4426FB0065130D /* LockJaw */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		BE41C30E1D4426FB0065130D /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				BE41C3231D4426FB0065130D /* LaunchScreen.storyboard in Resources */,
+				BE41C3201D4426FB0065130D /* Assets.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		BE41C30C1D4426FB0065130D /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				BE41C3361D4441520065130D /* AutolayoutHelper.m in Sources */,
+				BE41C3371D4441520065130D /* LinearLayout.m in Sources */,
+				BE41C3181D4426FB0065130D /* AppDelegate.m in Sources */,
+				BE41C3151D4426FB0065130D /* main.m in Sources */,
+				BE89B5D61D45848B00315066 /* LKJConnectionViewController.m in Sources */,
+				BE41C32C1D4429E70065130D /* LKJBluetoothController.m in Sources */,
+				BE41C33B1D4443F00065130D /* CBPeripheral+ExpirationDate.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXVariantGroup section */
+		BE41C3211D4426FB0065130D /* LaunchScreen.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				BE41C3221D4426FB0065130D /* Base */,
+			);
+			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		BE41C3251D4426FB0065130D /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+			};
+			name = Debug;
+		};
+		BE41C3261D4426FB0065130D /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				SDKROOT = iphoneos;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		BE41C3281D4426FB0065130D /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				INFOPLIST_FILE = LockJaw/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.jasonscharff.LockJaw;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Debug;
+		};
+		BE41C3291D4426FB0065130D /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				INFOPLIST_FILE = LockJaw/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.jasonscharff.LockJaw;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		BE41C30B1D4426FB0065130D /* Build configuration list for PBXProject "LockJaw" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				BE41C3251D4426FB0065130D /* Debug */,
+				BE41C3261D4426FB0065130D /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		BE41C3271D4426FB0065130D /* Build configuration list for PBXNativeTarget "LockJaw" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				BE41C3281D4426FB0065130D /* Debug */,
+				BE41C3291D4426FB0065130D /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = BE41C3081D4426FB0065130D /* Project object */;
+}
