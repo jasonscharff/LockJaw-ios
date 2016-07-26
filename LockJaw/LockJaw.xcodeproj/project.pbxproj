@@ -15,6 +15,7 @@
 		BE41C3361D4441520065130D /* AutolayoutHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = BE41C3331D4441520065130D /* AutolayoutHelper.m */; };
 		BE41C3371D4441520065130D /* LinearLayout.m in Sources */ = {isa = PBXBuildFile; fileRef = BE41C3351D4441520065130D /* LinearLayout.m */; };
 		BE41C33B1D4443F00065130D /* CBPeripheral+ExpirationDate.m in Sources */ = {isa = PBXBuildFile; fileRef = BE41C33A1D4443F00065130D /* CBPeripheral+ExpirationDate.m */; };
+		BE67C5D41D46F04E0089B84E /* LKJLockViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BE67C5D31D46F04E0089B84E /* LKJLockViewController.m */; };
 		BE89B5D61D45848B00315066 /* LKJConnectionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BE89B5D51D45848B00315066 /* LKJConnectionViewController.m */; };
 /* End PBXBuildFile section */
 
@@ -34,6 +35,8 @@
 		BE41C3351D4441520065130D /* LinearLayout.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LinearLayout.m; sourceTree = "<group>"; };
 		BE41C3391D4443F00065130D /* CBPeripheral+ExpirationDate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "CBPeripheral+ExpirationDate.h"; sourceTree = "<group>"; };
 		BE41C33A1D4443F00065130D /* CBPeripheral+ExpirationDate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "CBPeripheral+ExpirationDate.m"; sourceTree = "<group>"; };
+		BE67C5D21D46F04E0089B84E /* LKJLockViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LKJLockViewController.h; sourceTree = "<group>"; };
+		BE67C5D31D46F04E0089B84E /* LKJLockViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LKJLockViewController.m; sourceTree = "<group>"; };
 		BE89B5D41D45848B00315066 /* LKJConnectionViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LKJConnectionViewController.h; sourceTree = "<group>"; };
 		BE89B5D51D45848B00315066 /* LKJConnectionViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LKJConnectionViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -94,6 +97,8 @@
 		BE41C3301D4440ED0065130D /* ViewController */ = {
 			isa = PBXGroup;
 			children = (
+				BE67C5D21D46F04E0089B84E /* LKJLockViewController.h */,
+				BE67C5D31D46F04E0089B84E /* LKJLockViewController.m */,
 				BE89B5D41D45848B00315066 /* LKJConnectionViewController.h */,
 				BE89B5D51D45848B00315066 /* LKJConnectionViewController.m */,
 			);
@@ -195,6 +200,7 @@
 				BE41C3361D4441520065130D /* AutolayoutHelper.m in Sources */,
 				BE41C3371D4441520065130D /* LinearLayout.m in Sources */,
 				BE41C3181D4426FB0065130D /* AppDelegate.m in Sources */,
+				BE67C5D41D46F04E0089B84E /* LKJLockViewController.m in Sources */,
 				BE41C3151D4426FB0065130D /* main.m in Sources */,
 				BE89B5D61D45848B00315066 /* LKJConnectionViewController.m in Sources */,
 				BE41C32C1D4429E70065130D /* LKJBluetoothController.m in Sources */,

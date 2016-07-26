@@ -25,4 +25,7 @@ static NSString * const kLKJBluetoothDeviceDisconnectedNotification = @"com.lock
 - (NSInteger)numberOfDevices;
 - (void)beginScanning;
 
+- (void)lockDevice;
+- (void)unlockDevice;
+
 @end

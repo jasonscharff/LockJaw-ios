@@ -15,7 +15,7 @@
 static NSString * const kLKJPeripheralUUIDKey = @"com.lockjaw.ble.uuid";
 static const int kLKJExpirationTimeInterval = 30;
 
-@interface LKJBluetoothController() <CBCentralManagerDelegate>
+@interface LKJBluetoothController() <CBCentralManagerDelegate, CBPeripheralDelegate>
 
 @property (strong, nonatomic) CBCentralManager *centralManager;
 @property (strong, nonatomic) CBPeripheral *peripheralBLE;
@@ -25,6 +25,7 @@ static const int kLKJExpirationTimeInterval = 30;
 @property (nonatomic, strong) NSMutableArray *discoveredDevicesArray;
 
 @property (nonatomic, strong) NSTimer *expirationTimer;
+
 @property (nonatomic) BOOL isOnline;
 
 @property (nonatomic) dispatch_queue_t notificationQueue;
@@ -127,6 +128,10 @@ static const int kLKJExpirationTimeInterval = 30;
 
 - (void)centralManager:(CBCentralManager *)central didConnectPeripheral:(CBPeripheral *)peripheral {
     [self.expirationTimer invalidate];
+    self.peripheralBLE.delegate = self;
+    [self.peripheralBLE discoverServices:nil];
+//    [[NSUserDefaults standardUserDefaults]setObject:peripheral.identifier forKey:kLKJPeripheralUUIDKey];
+//    [[NSUserDefaults standardUserDefaults]synchronize];
     dispatch_async(self.notificationQueue, ^{
         [[NSNotificationCenter defaultCenter]postNotificationName:kLKJBluetoothDeviceConnectedNotification object:nil];
     });
@@ -178,6 +183,10 @@ static const int kLKJExpirationTimeInterval = 30;
         }
 }
 
+-(void)peripheral:(CBPeripheral *)peripheral didDiscoverCharacteristicsForService:(CBService *)service error:(NSError *)error {
+    NSLog(@"discovered characteristic");
+}
+
 - (CBPeripheral *)peripheralAtIndex:(NSInteger)index {
     return self.discoveredDevicesArray[index];
 }
@@ -186,9 +195,78 @@ static const int kLKJExpirationTimeInterval = 30;
     return self.discoveredDevicesArray.count;
 }
 
+- (void)peripheral:(CBPeripheral *)peripheral didDiscoverServices:(NSError *)error {
+    NSLog(@"did discover service");
+    NSLog(@"count = %lu", peripheral.services.count);
+    for (CBService *service in peripheral.services) {
+        [self.peripheralBLE discoverCharacteristics:nil forService:service];
+    }
+    
+}
+
+
 - (void)selectPeripheralAtIndex:(NSInteger)index {
     CBPeripheral *peripheral = self.discoveredDevicesArray[index];
+    self.peripheralBLE = peripheral;
     [self.centralManager connectPeripheral:peripheral options:nil];
+}
+
+
+- (void)lockDevice {
+//    NSString *character = @"L";
+//    NSData *data = [NSData dataWithBytes:character.UTF8String length:character.length];
+    
+    NSData  *data	= nil;
+    int16_t value	= (int16_t)12;
+    
+    data = [NSData dataWithBytes:&value length:sizeof (value)];
+    
+    [self writeData:data];
+
+}
+
+- (void)unlockDevice {
+    NSString *character = @"U";
+    NSData *data = [NSData dataWithBytes:character.UTF8String length:character.length];
+    [self writeData:data];
+}
+
+- (void)writeData : (NSData *)data {
+    for (CBService *service in self.peripheralBLE.services) {
+        NSLog(@"services exist");
+        for (CBCharacteristic *characteristic in service.characteristics) {
+            NSLog(@"characteristics exist");
+            if(characteristic.properties == CBCharacteristicPropertyWrite) {
+                [self.peripheralBLE writeValue:data forCharacteristic:characteristic type:CBCharacteristicWriteWithResponse];
+            }
+            
+        }
+    }
+}
+
+- (void)peripheral:(CBPeripheral *)peripheral didWriteValueForCharacteristic:(CBCharacteristic *)characteristic error:(NSError *)error {
+    NSLog(@"did write value with error = %@", error);
+    for (CBService *service in self.peripheralBLE.services) {
+        for (CBCharacteristic *chars in service.characteristics) {
+        //    [self.peripheralBLE readValueForCharacteristic:chars];
+        }
+    }
+    
+}
+
+- (void)peripheral:(CBPeripheral *)peripheral didUpdateValueForCharacteristic:(CBCharacteristic *)characteristic error:(NSError *)error{
+    if (error){
+        NSLog(@"Update error!!! Characteristic: %@ with error: %@", characteristic.UUID, [error localizedDescription]);
+    }else{
+        NSData *data = characteristic.value;
+        if(data && data.length > 0) {
+            NSString *str = [NSString stringWithUTF8String:[data bytes]];
+            NSLog(@"Characteristic: %@ -> with value: %@", characteristic.UUID, str);
+        } else {
+            NSLog(@"data length = 0");
+        }
+
+    }
 }
 
 
