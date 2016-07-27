@@ -22,6 +22,7 @@
 		BE44091B1D47B9BA00FC0E67 /* LKJCaptionedButton.m in Sources */ = {isa = PBXBuildFile; fileRef = BE44091A1D47B9BA00FC0E67 /* LKJCaptionedButton.m */; };
 		BE67C5D41D46F04E0089B84E /* LKJLockViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BE67C5D31D46F04E0089B84E /* LKJLockViewController.m */; };
 		BE89B5D61D45848B00315066 /* LKJConnectionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BE89B5D51D45848B00315066 /* LKJConnectionViewController.m */; };
+		BEEAA25A1D488DC8005F81FD /* LKJLockView.m in Sources */ = {isa = PBXBuildFile; fileRef = BEEAA2591D488DC8005F81FD /* LKJLockView.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -54,6 +55,8 @@
 		BE67C5D31D46F04E0089B84E /* LKJLockViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LKJLockViewController.m; sourceTree = "<group>"; };
 		BE89B5D41D45848B00315066 /* LKJConnectionViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LKJConnectionViewController.h; sourceTree = "<group>"; };
 		BE89B5D51D45848B00315066 /* LKJConnectionViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LKJConnectionViewController.m; sourceTree = "<group>"; };
+		BEEAA2581D488DC8005F81FD /* LKJLockView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LKJLockView.h; sourceTree = "<group>"; };
+		BEEAA2591D488DC8005F81FD /* LKJLockView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LKJLockView.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -157,6 +160,8 @@
 		BE4409141D47B54100FC0E67 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				BEEAA2581D488DC8005F81FD /* LKJLockView.h */,
+				BEEAA2591D488DC8005F81FD /* LKJLockView.m */,
 				BE44090D1D47B52100FC0E67 /* LKJTabView.h */,
 				BE44090E1D47B52100FC0E67 /* LKJTabView.m */,
 				BE4409191D47B9BA00FC0E67 /* LKJCaptionedButton.h */,
@@ -247,6 +252,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				BE41C3361D4441520065130D /* AutolayoutHelper.m in Sources */,
+				BEEAA25A1D488DC8005F81FD /* LKJLockView.m in Sources */,
 				BE41C3371D4441520065130D /* LinearLayout.m in Sources */,
 				BE41C3181D4426FB0065130D /* AppDelegate.m in Sources */,
 				BE67C5D41D46F04E0089B84E /* LKJLockViewController.m in Sources */,

@@ -27,11 +27,17 @@
 }
 
 + (instancetype)lkj_lockedColor {
-    return nil;
+    return [UIColor colorWithRed:162.f/255.f
+                           green:0.f/255.f
+                            blue:37.f/255.f
+                           alpha:1.0];
 }
 
 + (instancetype)lkJ_unlockedColor {
-    return nil;
+    return [UIColor colorWithRed:71.f/255.f
+                           green:151.f/255.f
+                            blue:65.f/255.f
+                           alpha:1.0];
 }
 
 

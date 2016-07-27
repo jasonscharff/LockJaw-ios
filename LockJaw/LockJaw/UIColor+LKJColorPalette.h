@@ -14,5 +14,7 @@
 
 + (instancetype)lkj_goldColor;
 + (instancetype)lkj_navyColor;
++ (instancetype)lkj_lockedColor;
++ (instancetype)lkJ_unlockedColor;
 
 @end
