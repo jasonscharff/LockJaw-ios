@@ -128,6 +128,7 @@ static const int kLKJExpirationTimeInterval = 30;
     dispatch_async(self.notificationQueue, ^{
         [[NSNotificationCenter defaultCenter]postNotificationName:kLKJUnlockedNotification object:nil];
     });
+    NSLog(@"connected");
     [self.expirationTimer invalidate];
     self.peripheralBLE.delegate = self;
     [self.peripheralBLE discoverServices:nil];

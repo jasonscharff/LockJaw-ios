@@ -11,5 +11,6 @@
 @interface LKJLockView : UIControl
 
 @property (nonatomic) BOOL isLocked;
+- (void)changeLockStatus;
 
 @end
