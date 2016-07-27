@@ -15,6 +15,11 @@
 		BE41C3361D4441520065130D /* AutolayoutHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = BE41C3331D4441520065130D /* AutolayoutHelper.m */; };
 		BE41C3371D4441520065130D /* LinearLayout.m in Sources */ = {isa = PBXBuildFile; fileRef = BE41C3351D4441520065130D /* LinearLayout.m */; };
 		BE41C33B1D4443F00065130D /* CBPeripheral+ExpirationDate.m in Sources */ = {isa = PBXBuildFile; fileRef = BE41C33A1D4443F00065130D /* CBPeripheral+ExpirationDate.m */; };
+		BE44090C1D47B47100FC0E67 /* LKJTabViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BE44090B1D47B47100FC0E67 /* LKJTabViewController.m */; };
+		BE44090F1D47B52100FC0E67 /* LKJTabView.m in Sources */ = {isa = PBXBuildFile; fileRef = BE44090E1D47B52100FC0E67 /* LKJTabView.m */; };
+		BE4409121D47B53400FC0E67 /* UIColor+LKJColorPalette.m in Sources */ = {isa = PBXBuildFile; fileRef = BE4409111D47B53400FC0E67 /* UIColor+LKJColorPalette.m */; };
+		BE4409171D47B7AA00FC0E67 /* LKJTabItem.m in Sources */ = {isa = PBXBuildFile; fileRef = BE4409161D47B7AA00FC0E67 /* LKJTabItem.m */; };
+		BE44091B1D47B9BA00FC0E67 /* LKJCaptionedButton.m in Sources */ = {isa = PBXBuildFile; fileRef = BE44091A1D47B9BA00FC0E67 /* LKJCaptionedButton.m */; };
 		BE67C5D41D46F04E0089B84E /* LKJLockViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BE67C5D31D46F04E0089B84E /* LKJLockViewController.m */; };
 		BE89B5D61D45848B00315066 /* LKJConnectionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BE89B5D51D45848B00315066 /* LKJConnectionViewController.m */; };
 /* End PBXBuildFile section */
@@ -35,6 +40,16 @@
 		BE41C3351D4441520065130D /* LinearLayout.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LinearLayout.m; sourceTree = "<group>"; };
 		BE41C3391D4443F00065130D /* CBPeripheral+ExpirationDate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "CBPeripheral+ExpirationDate.h"; sourceTree = "<group>"; };
 		BE41C33A1D4443F00065130D /* CBPeripheral+ExpirationDate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "CBPeripheral+ExpirationDate.m"; sourceTree = "<group>"; };
+		BE44090A1D47B47100FC0E67 /* LKJTabViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LKJTabViewController.h; sourceTree = "<group>"; };
+		BE44090B1D47B47100FC0E67 /* LKJTabViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LKJTabViewController.m; sourceTree = "<group>"; };
+		BE44090D1D47B52100FC0E67 /* LKJTabView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LKJTabView.h; sourceTree = "<group>"; };
+		BE44090E1D47B52100FC0E67 /* LKJTabView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LKJTabView.m; sourceTree = "<group>"; };
+		BE4409101D47B53400FC0E67 /* UIColor+LKJColorPalette.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIColor+LKJColorPalette.h"; sourceTree = "<group>"; };
+		BE4409111D47B53400FC0E67 /* UIColor+LKJColorPalette.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIColor+LKJColorPalette.m"; sourceTree = "<group>"; };
+		BE4409151D47B7AA00FC0E67 /* LKJTabItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LKJTabItem.h; sourceTree = "<group>"; };
+		BE4409161D47B7AA00FC0E67 /* LKJTabItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LKJTabItem.m; sourceTree = "<group>"; };
+		BE4409191D47B9BA00FC0E67 /* LKJCaptionedButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = LKJCaptionedButton.h; path = Assets.xcassets/LKJCaptionedButton.h; sourceTree = "<group>"; };
+		BE44091A1D47B9BA00FC0E67 /* LKJCaptionedButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = LKJCaptionedButton.m; path = Assets.xcassets/LKJCaptionedButton.m; sourceTree = "<group>"; };
 		BE67C5D21D46F04E0089B84E /* LKJLockViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LKJLockViewController.h; sourceTree = "<group>"; };
 		BE67C5D31D46F04E0089B84E /* LKJLockViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LKJLockViewController.m; sourceTree = "<group>"; };
 		BE89B5D41D45848B00315066 /* LKJConnectionViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LKJConnectionViewController.h; sourceTree = "<group>"; };
@@ -71,11 +86,12 @@
 		BE41C3121D4426FB0065130D /* LockJaw */ = {
 			isa = PBXGroup;
 			children = (
-				BE41C3391D4443F00065130D /* CBPeripheral+ExpirationDate.h */,
-				BE41C33A1D4443F00065130D /* CBPeripheral+ExpirationDate.m */,
+				BE4409181D47B7AE00FC0E67 /* Objects */,
 				BE41C3381D4441580065130D /* Third Party */,
 				BE41C3161D4426FB0065130D /* AppDelegate.h */,
 				BE41C3171D4426FB0065130D /* AppDelegate.m */,
+				BE4409141D47B54100FC0E67 /* Views */,
+				BE4409131D47B53800FC0E67 /* Categories */,
 				BE41C3311D4440F60065130D /* StoreController */,
 				BE41C3301D4440ED0065130D /* ViewController */,
 				BE41C31F1D4426FB0065130D /* Assets.xcassets */,
@@ -97,6 +113,8 @@
 		BE41C3301D4440ED0065130D /* ViewController */ = {
 			isa = PBXGroup;
 			children = (
+				BE44090A1D47B47100FC0E67 /* LKJTabViewController.h */,
+				BE44090B1D47B47100FC0E67 /* LKJTabViewController.m */,
 				BE67C5D21D46F04E0089B84E /* LKJLockViewController.h */,
 				BE67C5D31D46F04E0089B84E /* LKJLockViewController.m */,
 				BE89B5D41D45848B00315066 /* LKJConnectionViewController.h */,
@@ -123,6 +141,37 @@
 				BE41C3351D4441520065130D /* LinearLayout.m */,
 			);
 			name = "Third Party";
+			sourceTree = "<group>";
+		};
+		BE4409131D47B53800FC0E67 /* Categories */ = {
+			isa = PBXGroup;
+			children = (
+				BE41C3391D4443F00065130D /* CBPeripheral+ExpirationDate.h */,
+				BE41C33A1D4443F00065130D /* CBPeripheral+ExpirationDate.m */,
+				BE4409101D47B53400FC0E67 /* UIColor+LKJColorPalette.h */,
+				BE4409111D47B53400FC0E67 /* UIColor+LKJColorPalette.m */,
+			);
+			name = Categories;
+			sourceTree = "<group>";
+		};
+		BE4409141D47B54100FC0E67 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				BE44090D1D47B52100FC0E67 /* LKJTabView.h */,
+				BE44090E1D47B52100FC0E67 /* LKJTabView.m */,
+				BE4409191D47B9BA00FC0E67 /* LKJCaptionedButton.h */,
+				BE44091A1D47B9BA00FC0E67 /* LKJCaptionedButton.m */,
+			);
+			name = Views;
+			sourceTree = "<group>";
+		};
+		BE4409181D47B7AE00FC0E67 /* Objects */ = {
+			isa = PBXGroup;
+			children = (
+				BE4409151D47B7AA00FC0E67 /* LKJTabItem.h */,
+				BE4409161D47B7AA00FC0E67 /* LKJTabItem.m */,
+			);
+			name = Objects;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -201,9 +250,14 @@
 				BE41C3371D4441520065130D /* LinearLayout.m in Sources */,
 				BE41C3181D4426FB0065130D /* AppDelegate.m in Sources */,
 				BE67C5D41D46F04E0089B84E /* LKJLockViewController.m in Sources */,
+				BE44091B1D47B9BA00FC0E67 /* LKJCaptionedButton.m in Sources */,
+				BE44090F1D47B52100FC0E67 /* LKJTabView.m in Sources */,
 				BE41C3151D4426FB0065130D /* main.m in Sources */,
+				BE4409171D47B7AA00FC0E67 /* LKJTabItem.m in Sources */,
 				BE89B5D61D45848B00315066 /* LKJConnectionViewController.m in Sources */,
 				BE41C32C1D4429E70065130D /* LKJBluetoothController.m in Sources */,
+				BE4409121D47B53400FC0E67 /* UIColor+LKJColorPalette.m in Sources */,
+				BE44090C1D47B47100FC0E67 /* LKJTabViewController.m in Sources */,
 				BE41C33B1D4443F00065130D /* CBPeripheral+ExpirationDate.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

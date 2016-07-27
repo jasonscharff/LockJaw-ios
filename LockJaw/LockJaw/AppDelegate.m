@@ -20,6 +20,10 @@
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     
     self.window = [[UIWindow alloc] initWithFrame:UIScreen.mainScreen.bounds];
+    
+    UINavigationController *navigationController = [[UINavigationController alloc]init];
+    
+    
     LKJConnectionViewController *rootVC = [[LKJConnectionViewController alloc]init];
     self.window.rootViewController = rootVC;
     [self.window makeKeyAndVisible];

@@ -15,9 +15,10 @@
 static NSString * const kLKJPeripheralUUIDKey = @"com.lockjaw.ble.uuid";
 static const int kLKJExpirationTimeInterval = 30;
 
-@interface LKJBluetoothController() <CBCentralManagerDelegate, CBPeripheralDelegate>
+@interface LKJBluetoothController() <CBCentralManagerDelegate, CBPeripheralDelegate, CBPeripheralManagerDelegate>
 
 @property (strong, nonatomic) CBCentralManager *centralManager;
+
 @property (strong, nonatomic) CBPeripheral *peripheralBLE;
 @property (strong, nonatomic) NSUUID *deviceID;
 
@@ -145,7 +146,9 @@ static const int kLKJExpirationTimeInterval = 30;
 - (void)centralManagerDidUpdateState:(CBCentralManager *)central {
     switch (self.centralManager.state) {
         //Because iOS 10 is unreleased we'll ignore deprecation warnings for now.
+            NSLog(@"changed state")
         case CBCentralManagerStatePoweredOff: {
+            NSLog(@"did power off");
             _isOnline = NO;
                 [self clearDevices];
                 
@@ -168,8 +171,8 @@ static const int kLKJExpirationTimeInterval = 30;
                 break;
             }
                 
-            case CBCentralManagerStateResetting:
-            {
+            case CBCentralManagerStateResetting:{
+                NSLog(@"is resetting");
                 [self clearDevices];
                 break;
             }
@@ -213,13 +216,8 @@ static const int kLKJExpirationTimeInterval = 30;
 
 
 - (void)lockDevice {
-//    NSString *character = @"L";
-//    NSData *data = [NSData dataWithBytes:character.UTF8String length:character.length];
-    
-    NSData  *data	= nil;
-    int16_t value	= (int16_t)12;
-    
-    data = [NSData dataWithBytes:&value length:sizeof (value)];
+    NSString *character = @"L";
+    NSData *data = [NSData dataWithBytes:character.UTF8String length:character.length];
     
     [self writeData:data];
 
@@ -233,12 +231,9 @@ static const int kLKJExpirationTimeInterval = 30;
 
 - (void)writeData : (NSData *)data {
     for (CBService *service in self.peripheralBLE.services) {
-        NSLog(@"services exist");
         for (CBCharacteristic *characteristic in service.characteristics) {
-            NSLog(@"characteristics exist");
-            if(characteristic.properties == CBCharacteristicPropertyWrite) {
-                [self.peripheralBLE writeValue:data forCharacteristic:characteristic type:CBCharacteristicWriteWithResponse];
-            }
+            [self.peripheralBLE writeValue:data forCharacteristic:characteristic type:CBCharacteristicWriteWithoutResponse];
+    //        }
             
         }
     }
@@ -248,7 +243,9 @@ static const int kLKJExpirationTimeInterval = 30;
     NSLog(@"did write value with error = %@", error);
     for (CBService *service in self.peripheralBLE.services) {
         for (CBCharacteristic *chars in service.characteristics) {
-        //    [self.peripheralBLE readValueForCharacteristic:chars];
+            if(chars.properties == CBCharacteristicPropertyRead) {
+                [self.peripheralBLE readValueForCharacteristic:chars];
+            }
         }
     }
     
