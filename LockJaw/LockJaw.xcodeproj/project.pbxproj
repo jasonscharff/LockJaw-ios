@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		854F62B438D80B44C5C699B1 /* libPods-LockJaw.a in Frameworks */ = {isa = PBXBuildFile; fileRef = B47E13E885999C8C4F92F07D /* libPods-LockJaw.a */; };
 		BE41C3151D4426FB0065130D /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = BE41C3141D4426FB0065130D /* main.m */; };
 		BE41C3181D4426FB0065130D /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = BE41C3171D4426FB0065130D /* AppDelegate.m */; };
 		BE41C3201D4426FB0065130D /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = BE41C31F1D4426FB0065130D /* Assets.xcassets */; };
@@ -26,6 +27,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		24528E39FA327CA8B72B41EE /* Pods-LockJaw.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-LockJaw.release.xcconfig"; path = "Pods/Target Support Files/Pods-LockJaw/Pods-LockJaw.release.xcconfig"; sourceTree = "<group>"; };
+		B47E13E885999C8C4F92F07D /* libPods-LockJaw.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-LockJaw.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		BE41C3101D4426FB0065130D /* LockJaw.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = LockJaw.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		BE41C3141D4426FB0065130D /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		BE41C3161D4426FB0065130D /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -57,6 +60,7 @@
 		BE89B5D51D45848B00315066 /* LKJConnectionViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LKJConnectionViewController.m; sourceTree = "<group>"; };
 		BEEAA2581D488DC8005F81FD /* LKJLockView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LKJLockView.h; sourceTree = "<group>"; };
 		BEEAA2591D488DC8005F81FD /* LKJLockView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LKJLockView.m; sourceTree = "<group>"; };
+		C195F3149F4EE4AFE3EEDEEC /* Pods-LockJaw.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-LockJaw.debug.xcconfig"; path = "Pods/Target Support Files/Pods-LockJaw/Pods-LockJaw.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -64,17 +68,29 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				854F62B438D80B44C5C699B1 /* libPods-LockJaw.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		ABE70B9D74233C78AA081D2D /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				C195F3149F4EE4AFE3EEDEEC /* Pods-LockJaw.debug.xcconfig */,
+				24528E39FA327CA8B72B41EE /* Pods-LockJaw.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
 		BE41C3071D4426FB0065130D = {
 			isa = PBXGroup;
 			children = (
 				BE41C3121D4426FB0065130D /* LockJaw */,
 				BE41C3111D4426FB0065130D /* Products */,
+				ABE70B9D74233C78AA081D2D /* Pods */,
+				E0C012ABA1CA99261C004FB5 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -179,6 +195,14 @@
 			name = Objects;
 			sourceTree = "<group>";
 		};
+		E0C012ABA1CA99261C004FB5 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				B47E13E885999C8C4F92F07D /* libPods-LockJaw.a */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -186,9 +210,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = BE41C3271D4426FB0065130D /* Build configuration list for PBXNativeTarget "LockJaw" */;
 			buildPhases = (
+				FCDA0C7A7A6AEF7BCE080574 /* [CP] Check Pods Manifest.lock */,
 				BE41C30C1D4426FB0065130D /* Sources */,
 				BE41C30D1D4426FB0065130D /* Frameworks */,
 				BE41C30E1D4426FB0065130D /* Resources */,
+				5BDE9DDAC283CE47DC36546D /* [CP] Embed Pods Frameworks */,
+				001BA72CE0A1F9E0885FA3B7 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -245,6 +272,54 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		001BA72CE0A1F9E0885FA3B7 /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-LockJaw/Pods-LockJaw-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		5BDE9DDAC283CE47DC36546D /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-LockJaw/Pods-LockJaw-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		FCDA0C7A7A6AEF7BCE080574 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		BE41C30C1D4426FB0065130D /* Sources */ = {
@@ -368,6 +443,7 @@
 		};
 		BE41C3281D4426FB0065130D /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = C195F3149F4EE4AFE3EEDEEC /* Pods-LockJaw.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				INFOPLIST_FILE = LockJaw/Info.plist;
@@ -379,6 +455,7 @@
 		};
 		BE41C3291D4426FB0065130D /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 24528E39FA327CA8B72B41EE /* Pods-LockJaw.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				INFOPLIST_FILE = LockJaw/Info.plist;
