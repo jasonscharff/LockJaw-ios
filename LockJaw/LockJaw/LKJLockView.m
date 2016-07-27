@@ -10,9 +10,14 @@
 
 #import "UIColor+LKJColorPalette.h"
 
+#import "AutolayoutHelper.h"
+
 #import <pop/POP.h>
 
 @interface LKJLockView()
+
+@property (nonatomic) UIImageView *topLock;
+@property (nonatomic) UIImageView *bottomLock;
 
 
 @end
@@ -37,6 +42,24 @@
 
 - (void)commonInit {
     [self addTarget:self action:@selector(switchLock:) forControlEvents:UIControlEventTouchDown];
+    
+    self.topLock = [[UIImageView alloc]initWithImage:[UIImage imageNamed:@"toplock"]];
+    self.bottomLock = [[UIImageView alloc]initWithImage:[UIImage imageNamed:@"bottomlock"]];
+    
+    UIView *encapsulator = [UIView new];
+    [AutolayoutHelper configureView:encapsulator
+                           subViews:NSDictionaryOfVariableBindings(_topLock, _bottomLock)
+                        constraints:@[@"V:|[_topLock][_bottomLock]|",
+                                      @"H:|[_bottomLock]|",
+                                      @"X:_topLock.centerX == _bottomLock.centerX"]];
+    
+    
+    [AutolayoutHelper configureView:self
+                           subViews:NSDictionaryOfVariableBindings(encapsulator)
+                        constraints:@[@"X:encapsulator.centerX == superivew.centerX",
+                                      @"X:encapsulator.centerY == superview.centerY",
+                                      @"X:encapsulator.height == superview.height * 0.67"]];
+    
     
 }
 
