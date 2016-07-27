@@ -32,14 +32,16 @@
     
     self.captionLabel = [UILabel new];
     self.captionLabel.text = caption;
+    [self.captionLabel setContentHuggingPriority:UILayoutPriorityRequired forAxis:UILayoutConstraintAxisVertical];
     
     
     [AutolayoutHelper configureView:self
                            subViews:NSDictionaryOfVariableBindings(_imageView, _captionLabel)
                             metrics: NSDictionaryOfVariableBindings(spacingNumber)
-                        constraints:@[@"H:|-(>=0)-[_imageView]-(>=0)-|",
+                        constraints:@[@"X:_imageView.centerX == superview.centerX",
                                       @"H:|-(>=0)-[_captionLabel]-(>=0)-|",
-                                      @"V:|[_imageView]-spacingNumber-[_captionLabel]|"]];
+                                      @"X:_captionLabel.centerX == superview.centerX",
+                                      @"V:|-3-[_imageView]-spacingNumber-[_captionLabel]-3-|"]];
     
     return self;
 }

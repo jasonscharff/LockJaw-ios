@@ -13,5 +13,6 @@
 @interface UIColor(LKJColorPalette)
 
 + (instancetype)lkj_goldColor;
++ (instancetype)lkj_navyColor;
 
 @end

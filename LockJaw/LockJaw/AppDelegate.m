@@ -8,7 +8,7 @@
 
 #import "AppDelegate.h"
 
-#import "LKJConnectionViewController.h"
+#import "LKJTabViewController.h"
 
 @interface AppDelegate ()
 
@@ -21,11 +21,13 @@
     
     self.window = [[UIWindow alloc] initWithFrame:UIScreen.mainScreen.bounds];
     
-    UINavigationController *navigationController = [[UINavigationController alloc]init];
+    UINavigationController *navigationController = [[UINavigationController alloc]initWithRootViewController:[[LKJTabViewController alloc]init]];
     
+    navigationController.navigationBar.translucent = NO;
     
-    LKJConnectionViewController *rootVC = [[LKJConnectionViewController alloc]init];
-    self.window.rootViewController = rootVC;
+                                                    
+
+    self.window.rootViewController = navigationController;
     [self.window makeKeyAndVisible];
     
     return YES;

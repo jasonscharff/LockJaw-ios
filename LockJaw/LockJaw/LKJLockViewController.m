@@ -43,7 +43,12 @@
 }
 
 - (void)lock : (id)sender {
-    [[LKJBluetoothController sharedBluetoothController]lockDevice];
+    if([[LKJBluetoothController sharedBluetoothController]isLocked]) {
+        [[LKJBluetoothController sharedBluetoothController]unlockDevice];
+    } else {
+        [[LKJBluetoothController sharedBluetoothController]lockDevice];
+    }
+    
 }
 
 /*

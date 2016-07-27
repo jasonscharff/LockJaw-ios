@@ -87,6 +87,7 @@ static NSString * const kLKJConnectionCellIdentifier = @"com.locjkaw.ble.connect
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     [[LKJBluetoothController sharedBluetoothController]selectPeripheralAtIndex:indexPath.row];
     LKJLockViewController *lockVC = [[LKJLockViewController alloc]init];
+    
     [self presentViewController:lockVC animated:YES completion:nil];
 }
 

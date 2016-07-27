@@ -10,4 +10,6 @@
 
 @interface LKJConnectionViewController : UIViewController
 
+- (BOOL)existsBluetoothDevice;
+
 @end

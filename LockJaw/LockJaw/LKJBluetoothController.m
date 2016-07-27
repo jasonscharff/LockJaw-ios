@@ -20,7 +20,7 @@ static const int kLKJExpirationTimeInterval = 30;
 @property (strong, nonatomic) CBCentralManager *centralManager;
 
 @property (strong, nonatomic) CBPeripheral *peripheralBLE;
-@property (strong, nonatomic) NSUUID *deviceID;
+@property (strong, nonatomic) NSString *deviceID;
 
 @property (nonatomic, strong) NSMutableDictionary *discoveredDevices;
 @property (nonatomic, strong) NSMutableArray *discoveredDevicesArray;
@@ -106,13 +106,10 @@ static const int kLKJExpirationTimeInterval = 30;
 #pragma mark - CBCentralManagerDelegate
 
 - (void)centralManager:(CBCentralManager *)central didDiscoverPeripheral:(CBPeripheral *)peripheral advertisementData:(NSDictionary<NSString *,id> *)advertisementData RSSI:(NSNumber *)RSSI {
-    if(!peripheral.name) {
-        return;
-    }
-    if(peripheral.identifier == self.deviceID) {
+    if([peripheral.identifier.UUIDString isEqualToString:self.deviceID]) {
         self.peripheralBLE = peripheral;
         [self.centralManager connectPeripheral:self.peripheralBLE options:nil];
-    } else {
+    } else if (peripheral.name){
         peripheral.discoveryDate = [NSDate date];
         if(!self.discoveredDevices[peripheral.identifier]) {
             [self.discoveredDevicesArray addObject:peripheral];
@@ -128,25 +125,25 @@ static const int kLKJExpirationTimeInterval = 30;
 }
 
 - (void)centralManager:(CBCentralManager *)central didConnectPeripheral:(CBPeripheral *)peripheral {
+    dispatch_async(self.notificationQueue, ^{
+        [[NSNotificationCenter defaultCenter]postNotificationName:kLKJUnlockedNotification object:nil];
+    });
     [self.expirationTimer invalidate];
     self.peripheralBLE.delegate = self;
     [self.peripheralBLE discoverServices:nil];
-//    [[NSUserDefaults standardUserDefaults]setObject:peripheral.identifier forKey:kLKJPeripheralUUIDKey];
-//    [[NSUserDefaults standardUserDefaults]synchronize];
-    dispatch_async(self.notificationQueue, ^{
-        [[NSNotificationCenter defaultCenter]postNotificationName:kLKJBluetoothDeviceConnectedNotification object:nil];
-    });
     
 }
 
 - (void)centralManager:(CBCentralManager *)central didDisconnectPeripheral:(CBPeripheral *)peripheral error:(NSError *)error {
-    //Send notification
+    dispatch_async(self.notificationQueue, ^{
+        [[NSNotificationCenter defaultCenter]postNotificationName:kLKJLockedNotification object:nil];
+
+    });
 }
 
 - (void)centralManagerDidUpdateState:(CBCentralManager *)central {
     switch (self.centralManager.state) {
         //Because iOS 10 is unreleased we'll ignore deprecation warnings for now.
-            NSLog(@"changed state")
         case CBCentralManagerStatePoweredOff: {
             NSLog(@"did power off");
             _isOnline = NO;
@@ -198,73 +195,54 @@ static const int kLKJExpirationTimeInterval = 30;
     return self.discoveredDevicesArray.count;
 }
 
-- (void)peripheral:(CBPeripheral *)peripheral didDiscoverServices:(NSError *)error {
-    NSLog(@"did discover service");
-    NSLog(@"count = %lu", peripheral.services.count);
-    for (CBService *service in peripheral.services) {
-        [self.peripheralBLE discoverCharacteristics:nil forService:service];
-    }
-    
-}
-
-
 - (void)selectPeripheralAtIndex:(NSInteger)index {
     CBPeripheral *peripheral = self.discoveredDevicesArray[index];
     self.peripheralBLE = peripheral;
-    [self.centralManager connectPeripheral:peripheral options:nil];
+    
+    [[NSUserDefaults standardUserDefaults]setObject:self.peripheralBLE.identifier.UUIDString forKey:kLKJPeripheralUUIDKey];
+    [[NSUserDefaults standardUserDefaults]synchronize];
 }
 
 
 - (void)lockDevice {
-    NSString *character = @"L";
-    NSData *data = [NSData dataWithBytes:character.UTF8String length:character.length];
-    
-    [self writeData:data];
+    if(![self isLocked]) {
+        [self.centralManager cancelPeripheralConnection:self.peripheralBLE];
 
+    }
 }
 
 - (void)unlockDevice {
-    NSString *character = @"U";
-    NSData *data = [NSData dataWithBytes:character.UTF8String length:character.length];
-    [self writeData:data];
-}
-
-- (void)writeData : (NSData *)data {
-    for (CBService *service in self.peripheralBLE.services) {
-        for (CBCharacteristic *characteristic in service.characteristics) {
-            [self.peripheralBLE writeValue:data forCharacteristic:characteristic type:CBCharacteristicWriteWithoutResponse];
-    //        }
-            
-        }
-    }
-}
-
-- (void)peripheral:(CBPeripheral *)peripheral didWriteValueForCharacteristic:(CBCharacteristic *)characteristic error:(NSError *)error {
-    NSLog(@"did write value with error = %@", error);
-    for (CBService *service in self.peripheralBLE.services) {
-        for (CBCharacteristic *chars in service.characteristics) {
-            if(chars.properties == CBCharacteristicPropertyRead) {
-                [self.peripheralBLE readValueForCharacteristic:chars];
-            }
-        }
+    if([self isLocked]) {
+        [self.centralManager connectPeripheral:self.peripheralBLE options:nil];
     }
     
 }
 
-- (void)peripheral:(CBPeripheral *)peripheral didUpdateValueForCharacteristic:(CBCharacteristic *)characteristic error:(NSError *)error{
-    if (error){
-        NSLog(@"Update error!!! Characteristic: %@ with error: %@", characteristic.UUID, [error localizedDescription]);
-    }else{
-        NSData *data = characteristic.value;
-        if(data && data.length > 0) {
-            NSString *str = [NSString stringWithUTF8String:[data bytes]];
-            NSLog(@"Characteristic: %@ -> with value: %@", characteristic.UUID, str);
-        } else {
-            NSLog(@"data length = 0");
-        }
-
+- (BOOL)isLocked {
+    if(self.peripheralBLE.state == CBPeripheralStateConnected) {
+        return NO;
+    } else {
+        return YES;
     }
 }
+
+- (BOOL)existsBluetoothDevice {
+    if(self.deviceID) {
+        return YES;
+    } else {
+        return NO;
+    }
+}
+
+- (BOOL)isInProgress {
+    if(self.peripheralBLE.state == CBPeripheralStateConnected || self.peripheralBLE.state == CBPeripheralStateDisconnected) {
+        return YES;
+    } else {
+        return NO;
+    }
+}
+
+
 
 
 @end

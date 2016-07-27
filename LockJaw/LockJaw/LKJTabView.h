@@ -10,12 +10,14 @@
 
 @class LKJTabItem;
 
-typedef void (^buttonPressedBlock)(int index);
+static CGFloat const kLKJStandardTabViewHeight = 49.f;
+
+typedef void (^buttonPressedBlock)(NSInteger index);
 
 @interface LKJTabView : UIView
 
 @property (nonatomic) NSArray<LKJTabItem *>*tabItems;
-@property (nonatomic) NSArray <buttonPressedBlock>*actionBlocks;
+@property (nonatomic) buttonPressedBlock actionBlock;
 
 
 

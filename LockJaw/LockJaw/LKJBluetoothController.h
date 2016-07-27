@@ -14,6 +14,9 @@ static NSString * const kLKJNewBluetoothDeviceDiscoveredNotification = @"com.loc
 static NSString * const kLKJBluetoothDeviceLostNotification = @"com.lockjaw.ble.device.lost";
 static NSString * const kLKJBluetoothDeviceConnectedNotification = @"com.lockjaw.ble.device.connected";
 static NSString * const kLKJBluetoothDeviceDisconnectedNotification = @"com.lockjaw.ble.device.disconnected";
+static NSString * const kLKJLockedNotification = @"com.lockjaw.lock.locked";
+static NSString * const kLKJUnlockedNotification = @"com.lockjaw.lock.unlocked";
+
 
 
 @interface LKJBluetoothController : NSObject
@@ -27,5 +30,9 @@ static NSString * const kLKJBluetoothDeviceDisconnectedNotification = @"com.lock
 
 - (void)lockDevice;
 - (void)unlockDevice;
+
+- (BOOL)isLocked;
+
+- (BOOL)existsBluetoothDevice;
 
 @end
