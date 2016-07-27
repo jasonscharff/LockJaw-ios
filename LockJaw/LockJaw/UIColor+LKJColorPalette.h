@@ -16,5 +16,6 @@
 + (instancetype)lkj_navyColor;
 + (instancetype)lkj_lockedColor;
 + (instancetype)lkJ_unlockedColor;
++ (instancetype)lkj_lightNavyColor;
 
 @end

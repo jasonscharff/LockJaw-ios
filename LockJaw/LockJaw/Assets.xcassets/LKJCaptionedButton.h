@@ -14,4 +14,8 @@
                       caption : (NSString *)caption
                       spacing : (CGFloat)spacing;
 
+@property (nonatomic) UIColor *selectedColor; //defaults to white
+@property (nonatomic) UIColor *standardColor; //defaults to black.
+
+
 @end

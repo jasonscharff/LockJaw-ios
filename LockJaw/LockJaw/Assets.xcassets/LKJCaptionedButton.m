@@ -25,13 +25,19 @@
                       spacing : (CGFloat)spacing {
     self = [super init];
     
+    self.standardColor = [UIColor blackColor];
+    self.selectedColor = [UIColor whiteColor];
+    
     NSNumber *spacingNumber = @(spacing);
     
     self.imageView = [[UIImageView alloc]initWithImage:image];
     self.imageView.contentMode = UIViewContentModeScaleAspectFit;
+    self.imageView.tintColor = self.standardColor;
     
     self.captionLabel = [UILabel new];
     self.captionLabel.text = caption;
+    self.captionLabel.font = [UIFont systemFontOfSize:12];
+    self.captionLabel.textColor = self.standardColor;
     [self.captionLabel setContentHuggingPriority:UILayoutPriorityRequired forAxis:UILayoutConstraintAxisVertical];
     
     
@@ -41,9 +47,46 @@
                         constraints:@[@"X:_imageView.centerX == superview.centerX",
                                       @"H:|-(>=0)-[_captionLabel]-(>=0)-|",
                                       @"X:_captionLabel.centerX == superview.centerX",
-                                      @"V:|-3-[_imageView]-spacingNumber-[_captionLabel]-3-|"]];
+                                      @"V:|-3-[_imageView]-(>=spacingNumber)-[_captionLabel]-3-|"]];
+    
+    NSLayoutConstraint *imageHeight = [NSLayoutConstraint constraintWithItem:self.imageView
+                                                                   attribute:NSLayoutAttributeHeight
+                                                                   relatedBy:NSLayoutRelationLessThanOrEqual
+                                                                      toItem:self
+                                                                   attribute:NSLayoutAttributeHeight
+                                                                  multiplier:0.5
+                                                                    constant:0];
+    [self addConstraint:imageHeight];
+    
     
     return self;
+}
+
+- (void)setStandardColor:(UIColor *)standardColor {
+    _standardColor = standardColor;
+    if(!self.selected) {
+        self.captionLabel.textColor = self.standardColor;
+        self.imageView.tintColor = self.standardColor;
+    }
+}
+
+- (void)setSelectedColor:(UIColor *)selectedColor {
+    _selectedColor = selectedColor;
+    if(self.selected) {
+        self.captionLabel.textColor = self.selectedColor;
+        self.imageView.tintColor = self.selectedColor;
+    }
+}
+
+- (void)setSelected:(BOOL)selected {
+    if(selected) {
+        self.captionLabel.textColor = self.selectedColor;
+        self.imageView.tintColor = self.selectedColor;
+    } else {
+        self.captionLabel.textColor = self.standardColor;
+        self.imageView.tintColor = self.standardColor;
+    }
+    
 }
 
 

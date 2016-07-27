@@ -40,5 +40,11 @@
                            alpha:1.0];
 }
 
++ (instancetype)lkj_lightNavyColor {
+    return [UIColor colorWithRed:94.f/255.f
+                           green:124.f/255.f
+                            blue:154.f/255.f
+                           alpha:1.0];
+}
 
 @end

@@ -110,9 +110,9 @@ static const int kLKJSettingsLockIndex = 3;
     
     
     if([[LKJBluetoothController sharedBluetoothController]existsBluetoothDevice]) {
-        self.tabView.actionBlock(kLKJControlLockIndex);
+        [self.tabView selectButtonAtIndex:kLKJControlLockIndex];
     } else {
-        self.tabView.actionBlock(kLKJConnectLockIndex);
+        [self.tabView selectButtonAtIndex:kLKJConnectLockIndex];
     }
     
                                  
@@ -132,7 +132,7 @@ static const int kLKJSettingsLockIndex = 3;
 shouldTransitionToViewControllerOfClass:(Class)controllerClass {
     if(viewController == self.currentContentViewController) {
         if(controllerClass == [LKJLockViewController class]) {
-            self.tabView.actionBlock(kLKJControlLockIndex);
+            [self.tabView selectButtonAtIndex:kLKJControlLockIndex];
         }
         
     }

@@ -19,6 +19,8 @@ typedef void (^buttonPressedBlock)(NSInteger index);
 @property (nonatomic) NSArray<LKJTabItem *>*tabItems;
 @property (nonatomic) buttonPressedBlock actionBlock;
 
+- (void)selectButtonAtIndex : (NSInteger)index;
+
 
 
 @end

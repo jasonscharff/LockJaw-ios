@@ -10,6 +10,8 @@
 
 #import "UIColor+LKJColorPalette.h"
 
+#import <pop/POP.h>
+
 @interface LKJLockView()
 
 
@@ -39,11 +41,14 @@
 }
 
 - (IBAction)switchLock:(id)sender {
+    POPSpringAnimation *colorAnimation = [POPSpringAnimation animation];
+    colorAnimation.property = [POPAnimatableProperty propertyWithName:kPOPViewBackgroundColor];
     if(self.isLocked) {
-        self.backgroundColor = [UIColor lkJ_unlockedColor];
+        colorAnimation.toValue = (id)[UIColor lkJ_unlockedColor].CGColor;
     } else {
-        self.backgroundColor = [UIColor lkj_lockedColor];
+        colorAnimation.toValue = (id)[UIColor lkj_lockedColor].CGColor;
     }
+    [self pop_addAnimation:colorAnimation forKey:@"colorAnimation"];
     self.isLocked = !self.isLocked;
 }
 
