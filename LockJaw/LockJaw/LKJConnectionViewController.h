@@ -8,7 +8,12 @@
 
 #import <UIKit/UIKit.h>
 
+#import "LKJTabViewController.h"
+
 @interface LKJConnectionViewController : UIViewController
+
+@property (nonatomic, weak)id<LKJTabViewControllerDelegate>delegate;
+
 
 - (BOOL)existsBluetoothDevice;
 

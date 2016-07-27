@@ -8,7 +8,14 @@
 
 #import <UIKit/UIKit.h>
 
+@protocol LKJTabViewControllerDelegate <NSObject>
+
+@required
+- (void)viewController : (UIViewController *)viewController shouldTransitionToViewControllerOfClass: (Class)controllerClass;
+
+@end
 
 @interface LKJTabViewController : UIViewController
+
 
 @end

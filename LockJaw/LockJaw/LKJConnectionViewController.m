@@ -12,6 +12,7 @@
 
 #import "LKJBluetoothController.h"
 #import "LKJLockViewController.h"
+#import "LKJTabViewController.h"
 
 @import CoreBluetooth;
 
@@ -86,9 +87,9 @@ static NSString * const kLKJConnectionCellIdentifier = @"com.locjkaw.ble.connect
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     [[LKJBluetoothController sharedBluetoothController]selectPeripheralAtIndex:indexPath.row];
-    LKJLockViewController *lockVC = [[LKJLockViewController alloc]init];
-    
-    [self presentViewController:lockVC animated:YES completion:nil];
+    if(self.delegate) {
+        [self.delegate viewController:self shouldTransitionToViewControllerOfClass:[LKJLockViewController class]];
+    }
 }
 
 #pragma mark notification handling

@@ -57,8 +57,9 @@ static CGFloat kLKJDefaultSpacing = 4.0f;
     _tabItems = tabItems;
     self.buttonArray = [[NSMutableArray alloc]initWithCapacity:tabItems.count];
     
-    int i = 0;
-    for (LKJTabItem *item in tabItems) {
+    for (int i = 0; i < tabItems.count; i++) {
+        LKJTabItem *item = tabItems[i];
+        NSLog(@"item.caption = %@", item.caption); 
         LKJCaptionedButton *button = [[LKJCaptionedButton alloc]initWithImage:item.image
                                                                       caption:item.caption
                                                                       spacing:kLKJDefaultSpacing];
@@ -66,7 +67,6 @@ static CGFloat kLKJDefaultSpacing = 4.0f;
         [button addTarget:self action:@selector(buttonClicked:) forControlEvents:UIControlEventTouchDown];
         
         [self.stackView addArrangedSubview:button];
-        i++;
     }
     
 }

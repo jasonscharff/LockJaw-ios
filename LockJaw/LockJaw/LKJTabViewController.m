@@ -19,7 +19,8 @@
 #import "LKJTabView.h"
 
 
-@interface LKJTabViewController ()
+
+@interface LKJTabViewController () <LKJTabViewControllerDelegate>
 
 @property (nonatomic) LKJTabView *tabView;
 @property (nonatomic) UIViewController *currentContentViewController;
@@ -30,6 +31,12 @@
 @end
 
 static const CGFloat kLKJStandardSpacing = 20.f;
+
+
+static const int kLKJControlLockIndex = 0;
+static const int kLKJConnectLockIndex = 1;
+static const int kLKJHistoryLockIndex = 2;
+static const int kLKJSettingsLockIndex = 3;
 
 
 @implementation LKJTabViewController
@@ -51,6 +58,7 @@ static const CGFloat kLKJStandardSpacing = 20.f;
     connect.image = [UIImage imageNamed:@"connect"];
     
     LKJConnectionViewController *connectVC = [[LKJConnectionViewController alloc]init];
+    connectVC.delegate = self;
     
     LKJTabItem *history = [[LKJTabItem alloc]init];
     history.caption = @"History";
@@ -59,8 +67,8 @@ static const CGFloat kLKJStandardSpacing = 20.f;
     UIViewController *historyVC = [[UIViewController alloc]init];
     
     LKJTabItem *settings = [[LKJTabItem alloc]init];
-    control.caption = @"Settings";
-    control.image = [UIImage imageNamed:@"settings"];
+    settings.caption = @"Settings";
+    settings.image = [UIImage imageNamed:@"settings"];
     
     UIViewController *settingsVC = [[UIViewController alloc]init];
     
@@ -102,9 +110,9 @@ static const CGFloat kLKJStandardSpacing = 20.f;
     
     
     if([[LKJBluetoothController sharedBluetoothController]existsBluetoothDevice]) {
-        self.tabView.actionBlock(0);
+        self.tabView.actionBlock(kLKJControlLockIndex);
     } else {
-        self.tabView.actionBlock(1);
+        self.tabView.actionBlock(kLKJConnectLockIndex);
     }
     
                                  
@@ -116,6 +124,18 @@ static const CGFloat kLKJStandardSpacing = 20.f;
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
+}
+
+#pragma mark LKJTabViewControllerDelegate
+
+- (void)viewController:(UIViewController *)viewController
+shouldTransitionToViewControllerOfClass:(Class)controllerClass {
+    if(viewController == self.currentContentViewController) {
+        if(controllerClass == [LKJLockViewController class]) {
+            self.tabView.actionBlock(kLKJControlLockIndex);
+        }
+        
+    }
 }
 
 
