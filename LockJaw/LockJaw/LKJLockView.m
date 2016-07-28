@@ -53,7 +53,7 @@ static CGFloat const kLKJRotationAmount = M_PI_4;
     self.topLock = [[UIImageView alloc]initWithImage:topLockImage];
     self.topLock.contentMode = UIViewContentModeScaleAspectFit;
     [self.topLock.layer setAnchorPoint:CGPointMake(1, 1)];
-
+    
     
     self.bottomLock = [[UIImageView alloc]initWithImage:bottomLockImage];
     self.bottomLock.contentMode = UIViewContentModeScaleAspectFit;
@@ -79,7 +79,7 @@ static CGFloat const kLKJRotationAmount = M_PI_4;
     [self addSubview:self.bottomLock];
     
     [self addConstraints:@[aspectRatioTop, aspectRatioBottom]];
-     
+    
     
 }
 
@@ -87,6 +87,7 @@ static CGFloat const kLKJRotationAmount = M_PI_4;
     [super layoutSubviews];
     //Super sketchy due to rotations and lack of time
     //TODO: Make good.
+    self.layer.cornerRadius = MIN(self.bounds.size.height, self.bounds.size.width)/2;
     if(self.isLocked) {
         CGFloat bodyXBottom = 20;
         CGFloat bodyWidthBottom = self.frame.size.width- 2 * bodyXBottom;
@@ -104,7 +105,6 @@ static CGFloat const kLKJRotationAmount = M_PI_4;
         self.topLock.frame = CGRectMake(bodyXTop, bodyYTop, bodyWidthTop, bodyHeightTop);
         self.bottomLock.frame = CGRectMake(bodyXBottom, bodyYBottom, bodyWidthBottom, bodyHeightBottom);
         
-        self.layer.cornerRadius = MIN(self.bounds.size.height, self.bounds.size.width)/2;
     }
     
 }
@@ -116,16 +116,34 @@ static CGFloat const kLKJRotationAmount = M_PI_4;
     self.isLocked = !self.isLocked;
     if(!self.isLocked) {
         colorAnimation.toValue = (id)[UIColor lkJ_unlockedColor].CGColor;
-        self.topLock.transform = CGAffineTransformRotate(self.topLock.transform, M_PI_4);
+        
+        //This works. I don't know why. We'll move on for now.
+        CGFloat bodyXTop = 100;
+        CGFloat bodyWidthTop = self.frame.size.width - 2 * bodyXTop;
+        CGFloat bodyHeightTop = self.frame.size.height/5;
+        
+        CGFloat bodyYTop = (self.frame.size.height - self.frame.size.height/3 - self.frame.size.height/5)/ 2 + 11;
+        
+        [UIView animateWithDuration:0.5 animations:^{
+            self.topLock.frame = CGRectMake(bodyXTop, bodyYTop, bodyWidthTop, bodyHeightTop);
+            [self layoutSubviews];
+            
+            self.topLock.transform = CGAffineTransformMakeRotation(kLKJRotationAmount);
+        }];
+        
+        
     } else {
         colorAnimation.toValue = (id)[UIColor lkj_lockedColor].CGColor;
-        self.topLock.transform = CGAffineTransformRotate(self.topLock.transform, -M_PI_4);
+        [UIView animateWithDuration:0.5 animations:^{
+            self.topLock.transform = CGAffineTransformRotate(self.topLock.transform, -kLKJRotationAmount);
+            [self layoutSubviews];
+        }];
+        
     }
-    [self layoutSubviews];
+    
     
     [self pop_addAnimation:colorAnimation forKey:@"colorAnimation"];
 }
-
 
 
 @end

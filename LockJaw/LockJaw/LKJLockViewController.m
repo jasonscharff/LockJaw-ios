@@ -27,17 +27,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    self.view.backgroundColor = [UIColor whiteColor];
-//    UIButton *lockButton = [[UIButton alloc]init];
-//    [lockButton addTarget:self action:@selector(lock:) forControlEvents:UIControlEventTouchDown];
-//    [lockButton setTitle:@"Lock/Unlock" forState:UIControlStateNormal];
-//    [lockButton setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
-//    
-//    
-//    [AutolayoutHelper configureView:self.view
-//                           subViews:NSDictionaryOfVariableBindings(lockButton)
-//                        constraints:@[@"X:lockButton.centerX == superview.centerX",
-//                                      @"X:lockButton.centerY == superview.centerY"]];
+    self.view.backgroundColor = [UIColor clearColor];
     
     self.lockView = [[LKJLockView alloc]init];
     [self.lockView addTarget:self action:@selector(changeLockStatus:) forControlEvents:UIControlEventTouchDown];
@@ -76,6 +66,16 @@
         [[RLMRealm defaultRealm]beginWriteTransaction];
         [[RLMRealm defaultRealm]addObject:historyObject];
         [[RLMRealm defaultRealm]commitWriteTransaction];
+    } else {
+        UIAlertController *alertVC = [UIAlertController alertControllerWithTitle:@"Unable to reach lock."
+                                                                         message:@"Please try again in a few seconds."
+                                                                  preferredStyle:UIAlertControllerStyleAlert];
+        
+        UIAlertAction *dismiss = [UIAlertAction actionWithTitle:@"Ok" style:UIAlertActionStyleDefault handler:nil];
+        [alertVC addAction:dismiss];
+        
+        [self presentViewController:alertVC animated:YES completion:nil];
+        
     }
 }
 
