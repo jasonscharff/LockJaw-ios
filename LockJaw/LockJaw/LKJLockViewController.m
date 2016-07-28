@@ -54,17 +54,17 @@
     // Dispose of any resources that can be recreated.
 }
 
-- (void)lock : (id)sender {
-    if([[LKJBluetoothController sharedBluetoothController]isLocked]) {
-        [[LKJBluetoothController sharedBluetoothController]unlockDevice];
-    } else {
-        [[LKJBluetoothController sharedBluetoothController]lockDevice];
-    }
-    
-}
 
 - (void)changeLockStatus : (id)sender {
     [self.lockView changeLockStatus];
+//    if([[LKJBluetoothController sharedBluetoothController]isElgibleForLock]) {
+//        [self.lockView changeLockStatus];
+//        if([[LKJBluetoothController sharedBluetoothController]isLocked]) {
+//            [[LKJBluetoothController sharedBluetoothController]unlockDevice];
+//        } else {
+//            [[LKJBluetoothController sharedBluetoothController]lockDevice];
+//        }
+//    }
 }
 
 

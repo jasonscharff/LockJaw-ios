@@ -36,7 +36,6 @@ static const CGFloat kLKJStandardSpacing = 20.f;
 static const int kLKJControlLockIndex = 0;
 static const int kLKJConnectLockIndex = 1;
 static const int kLKJHistoryLockIndex = 2;
-static const int kLKJSettingsLockIndex = 3;
 
 
 @implementation LKJTabViewController
@@ -66,14 +65,9 @@ static const int kLKJSettingsLockIndex = 3;
     
     UIViewController *historyVC = [[UIViewController alloc]init];
     
-    LKJTabItem *settings = [[LKJTabItem alloc]init];
-    settings.caption = @"Settings";
-    settings.image = [UIImage imageNamed:@"settings"];
     
-    UIViewController *settingsVC = [[UIViewController alloc]init];
-    
-    self.tabView.tabItems = @[control, connect, history, settings];
-    self.viewControllers = @[controlVC, connectVC, historyVC, settingsVC];
+    self.tabView.tabItems = @[control, connect, history];
+    self.viewControllers = @[controlVC, connectVC, historyVC];
     
     
     self.view.backgroundColor = [UIColor lkj_navyColor];

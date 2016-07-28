@@ -235,15 +235,20 @@ static const int kLKJExpirationTimeInterval = 30;
     }
 }
 
-- (BOOL)isInProgress {
-    if(self.peripheralBLE.state == CBPeripheralStateConnected || self.peripheralBLE.state == CBPeripheralStateDisconnected) {
+- (BOOL)isElgibleForLock {
+    if(!self.peripheralBLE) {
+        return NO;
+    }
+    else if(self.peripheralBLE.state == CBPeripheralStateConnected) {
         return YES;
-    } else {
+    }
+    else if (self.peripheralBLE.state == CBPeripheralStateDisconnected) {
+        return YES;
+    }
+    else {
         return NO;
     }
 }
-
-
 
 
 @end

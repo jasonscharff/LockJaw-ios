@@ -21,7 +21,6 @@ static CGFloat const kLKJRotationAmount = M_PI_4;
 
 @property (nonatomic) UIImageView *topLock;
 @property (nonatomic) UIImageView *bottomLock;
-@property (nonatomic) UIView *encapsulatorView;
 
 
 @end
@@ -53,8 +52,8 @@ static CGFloat const kLKJRotationAmount = M_PI_4;
     
     self.topLock = [[UIImageView alloc]initWithImage:topLockImage];
     self.topLock.contentMode = UIViewContentModeScaleAspectFit;
-    self.topLock.backgroundColor = [UIColor yellowColor];
     [self.topLock.layer setAnchorPoint:CGPointMake(1, 1)];
+
     
     self.bottomLock = [[UIImageView alloc]initWithImage:bottomLockImage];
     self.bottomLock.contentMode = UIViewContentModeScaleAspectFit;
@@ -76,34 +75,37 @@ static CGFloat const kLKJRotationAmount = M_PI_4;
                                                                      multiplier:topLockImage.size.height/topLockImage.size.width
                                                                        constant:0];
     
-    NSLayoutConstraint *vertical = [NSLayoutConstraint constraintWithItem:self.topLock
-                                                                attribute:NSLayoutAttributeBottom
-                                                                relatedBy:NSLayoutRelationEqual
-                                                                   toItem:self.bottomLock
-                                                                attribute:NSLayoutAttributeTop
-                                                               multiplier:1.0
-                                                                 constant:0];
+    [self addSubview:self.topLock];
+    [self addSubview:self.bottomLock];
     
+    [self addConstraints:@[aspectRatioTop, aspectRatioBottom]];
+     
     
-    self.encapsulatorView = [UIView new];
-    self.encapsulatorView.translatesAutoresizingMaskIntoConstraints = YES;
-    self.encapsulatorView.backgroundColor = [UIColor redColor];
-    [AutolayoutHelper configureView:_encapsulatorView
-                           subViews:NSDictionaryOfVariableBindings(_topLock, _bottomLock)
-                        constraints:@[@"V:|[_topLock][_bottomLock]|",
-                                      @"X:_topLock.width==_bottomLock.width*0.8",
-                                      @"H:|[_bottomLock]|",
-                                      @"X:_topLock.centerX == _bottomLock.centerX"]];
-    
-    [_encapsulatorView addConstraints:@[aspectRatioTop, aspectRatioBottom]];
-    
-    
-    [AutolayoutHelper configureView:self
-                           subViews:NSDictionaryOfVariableBindings(_encapsulatorView)
-                        constraints:@[@"X:_encapsulatorView.centerX == superview.centerX",
-                                      @"X:_encapsulatorView.centerY == superview.centerY",
-                                      @"X:_encapsulatorView.height == superview.height*0.67"]];
-    
+}
+
+- (void)layoutSubviews {
+    [super layoutSubviews];
+    //Super sketchy due to rotations and lack of time
+    //TODO: Make good.
+    if(self.isLocked) {
+        CGFloat bodyXBottom = 20;
+        CGFloat bodyWidthBottom = self.frame.size.width- 2 * bodyXBottom;
+        CGFloat bodyHeightBottom = self.frame.size.height/3;
+        CGFloat bodyYBottom = ((self.frame.size.height - self.frame.size.height/3 - self.frame.size.height/5)/ 2) + (self.frame.size.height/5);
+        
+        
+        CGFloat bodyXTop = 30;
+        CGFloat bodyWidthTop = self.frame.size.width - 2 * bodyXTop;
+        CGFloat bodyHeightTop = self.frame.size.height/5;
+        
+        
+        CGFloat bodyYTop = (self.frame.size.height - self.frame.size.height/3 - self.frame.size.height/5)/ 2;
+        
+        self.topLock.frame = CGRectMake(bodyXTop, bodyYTop, bodyWidthTop, bodyHeightTop);
+        self.bottomLock.frame = CGRectMake(bodyXBottom, bodyYBottom, bodyWidthBottom, bodyHeightBottom);
+        
+        self.layer.cornerRadius = MIN(self.bounds.size.height, self.bounds.size.width)/2;
+    }
     
 }
 
@@ -119,17 +121,11 @@ static CGFloat const kLKJRotationAmount = M_PI_4;
         colorAnimation.toValue = (id)[UIColor lkj_lockedColor].CGColor;
         self.topLock.transform = CGAffineTransformRotate(self.topLock.transform, -M_PI_4);
     }
+    [self layoutSubviews];
     
     [self pop_addAnimation:colorAnimation forKey:@"colorAnimation"];
 }
 
 
-- (void)layoutSubviews {
-    [super layoutSubviews];
-    self.layer.cornerRadius = MIN(self.bounds.size.width, self.bounds.size.height)/2;
-    
-
-
-}
 
 @end

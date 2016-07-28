@@ -35,4 +35,6 @@ static NSString * const kLKJUnlockedNotification = @"com.lockjaw.lock.unlocked";
 
 - (BOOL)existsBluetoothDevice;
 
+- (BOOL)isElgibleForLock;
+
 @end
