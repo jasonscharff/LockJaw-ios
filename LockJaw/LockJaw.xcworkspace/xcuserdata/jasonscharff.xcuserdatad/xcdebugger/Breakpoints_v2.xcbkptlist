@@ -26,11 +26,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "LockJaw/LKJLockView.m"
-            timestampString = "491404494.939543"
+            timestampString = "491404945.301957"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "132"
-            endingLineNumber = "132"
+            startingLineNumber = "135"
+            endingLineNumber = "135"
             landmarkName = "-changeLockStatus"
             landmarkType = "7">
          </BreakpointContent>
@@ -232,22 +232,6 @@
             startingLineNumber = "108"
             endingLineNumber = "108"
             landmarkName = "-lostBluetoothDevice:"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "LockJaw/LKJLockView.m"
-            timestampString = "491404494.939543"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "128"
-            endingLineNumber = "128"
-            landmarkName = "-changeLockStatus"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>

@@ -122,19 +122,25 @@ static CGFloat const kLKJRotationAmount = M_PI_4;
         CGFloat bodyWidthTop = self.frame.size.width - 2 * bodyXTop;
         CGFloat bodyHeightTop = self.frame.size.height/5;
         
-        
         CGFloat bodyYTop = (self.frame.size.height - self.frame.size.height/3 - self.frame.size.height/5)/ 2 + 11;
         
-        self.topLock.frame = CGRectMake(bodyXTop, bodyYTop, bodyWidthTop, bodyHeightTop);
-        [self layoutSubviews];
+        [UIView animateWithDuration:0.5 animations:^{
+            self.topLock.frame = CGRectMake(bodyXTop, bodyYTop, bodyWidthTop, bodyHeightTop);
+            [self layoutSubviews];
+            
+            self.topLock.transform = CGAffineTransformMakeRotation(kLKJRotationAmount);
+        }];
         
-        self.topLock.transform = CGAffineTransformMakeRotation(kLKJRotationAmount);
+
     } else {
         colorAnimation.toValue = (id)[UIColor lkj_lockedColor].CGColor;
-        
-        self.topLock.transform = CGAffineTransformRotate(self.topLock.transform, -kLKJRotationAmount);
+        [UIView animateWithDuration:0.5 animations:^{
+            self.topLock.transform = CGAffineTransformRotate(self.topLock.transform, -kLKJRotationAmount);
+            [self layoutSubviews];
+        }];
+
     }
-    [self layoutSubviews];
+    
     
     [self pop_addAnimation:colorAnimation forKey:@"colorAnimation"];
 }
