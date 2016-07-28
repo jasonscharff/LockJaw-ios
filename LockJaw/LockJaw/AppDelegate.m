@@ -8,6 +8,8 @@
 
 #import "AppDelegate.h"
 
+#import "UIColor+LKJColorPalette.h"
+
 #import "LKJTabViewController.h"
 
 @interface AppDelegate ()
@@ -22,6 +24,11 @@
     self.window = [[UIWindow alloc] initWithFrame:UIScreen.mainScreen.bounds];
     
     UINavigationController *navigationController = [[UINavigationController alloc]initWithRootViewController:[[LKJTabViewController alloc]init]];
+    
+    navigationController.navigationBar.barTintColor = [UIColor lkj_goldColor];
+    
+    UIImageView *imageView = [[UIImageView alloc]initWithImage:[UIImage imageNamed:@"header"]];
+    navigationController.navigationBar.topItem.titleView = imageView;
     
     navigationController.navigationBar.translucent = NO;
     
