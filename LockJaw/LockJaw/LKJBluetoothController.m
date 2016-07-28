@@ -8,9 +8,14 @@
 
 #import "LKJBluetoothController.h"
 
+#import <Realm/Realm.h>
+
 #import "CBPeripheral+ExpirationDate.h"
 
+#import "LKJPeripheral.h"
+
 @import CoreBluetooth;
+
 
 static NSString * const kLKJPeripheralUUIDKey = @"com.lockjaw.ble.uuid";
 static const int kLKJExpirationTimeInterval = 30;
@@ -19,8 +24,9 @@ static const int kLKJExpirationTimeInterval = 30;
 
 @property (strong, nonatomic) CBCentralManager *centralManager;
 
-@property (strong, nonatomic) CBPeripheral *peripheralBLE;
-@property (strong, nonatomic) NSString *deviceID;
+
+@property (strong, nonatomic) RLMResults *historicalDevices;
+@property (strong, nonatomic) NSMutableArray<CBPeripheral *> *connectedPeripherals;
 
 @property (nonatomic, strong) NSMutableDictionary *discoveredDevices;
 @property (nonatomic, strong) NSMutableArray *discoveredDevicesArray;
@@ -30,6 +36,9 @@ static const int kLKJExpirationTimeInterval = 30;
 @property (nonatomic) BOOL isOnline;
 
 @property (nonatomic) dispatch_queue_t notificationQueue;
+
+@property (nonatomic) NSInteger selectedBluetoothDeviceIndex;
+
 
 
 @end
@@ -55,7 +64,6 @@ static const int kLKJExpirationTimeInterval = 30;
         self.centralManager = [[CBCentralManager alloc]initWithDelegate:self
                                                                   queue:centralQueue];
         
-        self.deviceID = [[NSUserDefaults standardUserDefaults]objectForKey:kLKJPeripheralUUIDKey];
         self.expirationTimer = [NSTimer timerWithTimeInterval:kLKJExpirationTimeInterval
                                                        target:self
                                                      selector:@selector(removeExpiredDevices:)
@@ -64,6 +72,13 @@ static const int kLKJExpirationTimeInterval = 30;
         
         self.discoveredDevicesArray = [[NSMutableArray alloc]init];
         self.discoveredDevices = [[NSMutableDictionary alloc]init];
+        
+        self.connectedPeripherals = [[NSMutableArray alloc]init];
+        
+        self.historicalDevices = [LKJPeripheral allObjects];
+        
+        self.selectedBluetoothDeviceIndex = -1;
+        
     }
     return self;
 }
@@ -74,9 +89,6 @@ static const int kLKJExpirationTimeInterval = 30;
     }
 }
 
-- (void)clearDevices {
-    self.peripheralBLE = nil;
-}
 
 - (void)removeExpiredDevices : (NSTimer *)timer {
     NSMutableArray *keysToRemove = [[NSMutableArray alloc]init];
@@ -87,6 +99,23 @@ static const int kLKJExpirationTimeInterval = 30;
             [keysToRemove addObject:key];
         }
     }
+    
+    CBPeripheral *currentPeripheral = self.connectedPeripherals[self.selectedBluetoothDeviceIndex];
+    for (id key in keysToRemove) {
+        [_connectedPeripherals removeObject:key];
+    }
+    self.selectedBluetoothDeviceIndex = [self.connectedPeripherals indexOfObject:currentPeripheral];
+    if(self.selectedBluetoothDeviceIndex == NSNotFound) {
+        self.selectedBluetoothDeviceIndex = 0;
+    }
+    dispatch_async(self.notificationQueue, ^{
+        NSNumber *shouldReset = @NO;
+        if(self.selectedBluetoothDeviceIndex == NSNotFound) {
+            shouldReset = @YES;
+        }
+        [[NSNotificationCenter defaultCenter]postNotificationName: kLKJShouldRefreshConnectedBluetoothDevicesNotification object:shouldReset];
+    });
+    
     for (id key in keysToRemove) {
         NSObject *object = _discoveredDevices[key];
         NSInteger index = [_discoveredDevicesArray indexOfObject:object];
@@ -106,10 +135,12 @@ static const int kLKJExpirationTimeInterval = 30;
 #pragma mark - CBCentralManagerDelegate
 
 - (void)centralManager:(CBCentralManager *)central didDiscoverPeripheral:(CBPeripheral *)peripheral advertisementData:(NSDictionary<NSString *,id> *)advertisementData RSSI:(NSNumber *)RSSI {
-    if([peripheral.identifier.UUIDString isEqualToString:self.deviceID]) {
-        self.peripheralBLE = peripheral;
-        [self.centralManager connectPeripheral:self.peripheralBLE options:nil];
-    } else if (peripheral.name){
+    for (LKJPeripheral *existingPeripheral in self.historicalDevices) {
+        if([existingPeripheral.uuid isEqualToString:peripheral.identifier.UUIDString]) {
+            [self.connectedPeripherals addObject:peripheral];
+        }
+    }
+     if (peripheral.name){
         peripheral.discoveryDate = [NSDate date];
         if(!self.discoveredDevices[peripheral.identifier]) {
             [self.discoveredDevicesArray addObject:peripheral];
@@ -129,9 +160,8 @@ static const int kLKJExpirationTimeInterval = 30;
         [[NSNotificationCenter defaultCenter]postNotificationName:kLKJUnlockedNotification object:nil];
     });
     NSLog(@"connected");
-    [self.expirationTimer invalidate];
-    self.peripheralBLE.delegate = self;
-    [self.peripheralBLE discoverServices:nil];
+    peripheral.delegate = self;
+    [peripheral discoverServices:nil];
     
 }
 
@@ -146,9 +176,6 @@ static const int kLKJExpirationTimeInterval = 30;
     switch (self.centralManager.state) {
         //Because iOS 10 is unreleased we'll ignore deprecation warnings for now.
         case CBCentralManagerStatePoweredOff: {
-            NSLog(@"did power off");
-            _isOnline = NO;
-                [self clearDevices];
                 
                 break;
             }
@@ -170,8 +197,6 @@ static const int kLKJExpirationTimeInterval = 30;
             }
                 
             case CBCentralManagerStateResetting:{
-                NSLog(@"is resetting");
-                [self clearDevices];
                 break;
             }
                 
@@ -198,29 +223,35 @@ static const int kLKJExpirationTimeInterval = 30;
 
 - (void)selectPeripheralAtIndex:(NSInteger)index {
     CBPeripheral *peripheral = self.discoveredDevicesArray[index];
-    self.peripheralBLE = peripheral;
     
-    [[NSUserDefaults standardUserDefaults]setObject:self.peripheralBLE.identifier.UUIDString forKey:kLKJPeripheralUUIDKey];
-    [[NSUserDefaults standardUserDefaults]synchronize];
+    LKJPeripheral *peripheralPeristed = [[LKJPeripheral alloc]init];
+    peripheralPeristed.uuid = peripheral.identifier.UUIDString;
+    peripheralPeristed.name = peripheralPeristed.name;
+    
+    [[RLMRealm defaultRealm]beginWriteTransaction];
+    [[RLMRealm defaultRealm]addObject:peripheralPeristed];
+    [[RLMRealm defaultRealm]commitWriteTransaction];
+    
+    [self.connectedPeripherals addObject:peripheral];
 }
 
 
 - (void)lockDevice {
     if(![self isLocked]) {
-        [self.centralManager cancelPeripheralConnection:self.peripheralBLE];
+        [self.centralManager cancelPeripheralConnection:self.connectedPeripherals[self.selectedBluetoothDeviceIndex]];
 
     }
 }
 
 - (void)unlockDevice {
     if([self isLocked]) {
-        [self.centralManager connectPeripheral:self.peripheralBLE options:nil];
+        [self.centralManager connectPeripheral:self.connectedPeripherals[self.selectedBluetoothDeviceIndex] options:nil];
     }
     
 }
 
 - (BOOL)isLocked {
-    if(self.peripheralBLE.state == CBPeripheralStateConnected) {
+    if(self.connectedPeripherals[self.selectedBluetoothDeviceIndex].state == CBPeripheralStateConnected) {
         return NO;
     } else {
         return YES;
@@ -228,21 +259,17 @@ static const int kLKJExpirationTimeInterval = 30;
 }
 
 - (BOOL)existsBluetoothDevice {
-    if(self.deviceID) {
-        return YES;
-    } else {
-        return NO;
-    }
+    return (self.connectedPeripherals.count > 0);
 }
 
 - (BOOL)isElgibleForLock {
-    if(!self.peripheralBLE) {
+    if(self.selectedBluetoothDeviceIndex < 0) {
         return NO;
     }
-    else if(self.peripheralBLE.state == CBPeripheralStateConnected) {
+    else if(self.connectedPeripherals[self.selectedBluetoothDeviceIndex].state == CBPeripheralStateConnected) {
         return YES;
     }
-    else if (self.peripheralBLE.state == CBPeripheralStateDisconnected) {
+    else if (self.connectedPeripherals[self.selectedBluetoothDeviceIndex].state == CBPeripheralStateDisconnected) {
         return YES;
     }
     else {

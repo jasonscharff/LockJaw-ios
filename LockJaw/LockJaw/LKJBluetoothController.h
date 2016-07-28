@@ -17,6 +17,9 @@ static NSString * const kLKJBluetoothDeviceDisconnectedNotification = @"com.lock
 static NSString * const kLKJLockedNotification = @"com.lockjaw.lock.locked";
 static NSString * const kLKJUnlockedNotification = @"com.lockjaw.lock.unlocked";
 
+static NSString * const kLKJShouldRefreshConnectedBluetoothDevicesNotification = @"com.lockjaw.ble.connected.refresh";
+
+
 
 
 @interface LKJBluetoothController : NSObject

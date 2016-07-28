@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		854F62B438D80B44C5C699B1 /* libPods-LockJaw.a in Frameworks */ = {isa = PBXBuildFile; fileRef = B47E13E885999C8C4F92F07D /* libPods-LockJaw.a */; };
+		BE2793D41D49A4B600E7036B /* LKJPeripheral.m in Sources */ = {isa = PBXBuildFile; fileRef = BE2793D31D49A4B600E7036B /* LKJPeripheral.m */; };
 		BE41C3151D4426FB0065130D /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = BE41C3141D4426FB0065130D /* main.m */; };
 		BE41C3181D4426FB0065130D /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = BE41C3171D4426FB0065130D /* AppDelegate.m */; };
 		BE41C3201D4426FB0065130D /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = BE41C31F1D4426FB0065130D /* Assets.xcassets */; };
@@ -29,6 +30,8 @@
 /* Begin PBXFileReference section */
 		24528E39FA327CA8B72B41EE /* Pods-LockJaw.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-LockJaw.release.xcconfig"; path = "Pods/Target Support Files/Pods-LockJaw/Pods-LockJaw.release.xcconfig"; sourceTree = "<group>"; };
 		B47E13E885999C8C4F92F07D /* libPods-LockJaw.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-LockJaw.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		BE2793D21D49A4B600E7036B /* LKJPeripheral.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LKJPeripheral.h; sourceTree = "<group>"; };
+		BE2793D31D49A4B600E7036B /* LKJPeripheral.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LKJPeripheral.m; sourceTree = "<group>"; };
 		BE41C3101D4426FB0065130D /* LockJaw.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = LockJaw.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		BE41C3141D4426FB0065130D /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		BE41C3161D4426FB0065130D /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -189,6 +192,8 @@
 		BE4409181D47B7AE00FC0E67 /* Objects */ = {
 			isa = PBXGroup;
 			children = (
+				BE2793D21D49A4B600E7036B /* LKJPeripheral.h */,
+				BE2793D31D49A4B600E7036B /* LKJPeripheral.m */,
 				BE4409151D47B7AA00FC0E67 /* LKJTabItem.h */,
 				BE4409161D47B7AA00FC0E67 /* LKJTabItem.m */,
 			);
@@ -340,6 +345,7 @@
 				BE4409121D47B53400FC0E67 /* UIColor+LKJColorPalette.m in Sources */,
 				BE44090C1D47B47100FC0E67 /* LKJTabViewController.m in Sources */,
 				BE41C33B1D4443F00065130D /* CBPeripheral+ExpirationDate.m in Sources */,
+				BE2793D41D49A4B600E7036B /* LKJPeripheral.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
