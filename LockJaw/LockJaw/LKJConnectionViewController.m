@@ -104,6 +104,19 @@ static NSString * const kLKJConnectionCellIdentifier = @"com.locjkaw.ble.connect
     }
 }
 
+- (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section {
+    UILabel *label = [UILabel new];
+    label.font = [UIFont systemFontOfSize:20.0f];
+    if(section == 0) {
+        label.text = @"My Devices";
+        return label;
+    } else if (section == 1) {
+        label.text = @"Discover";
+        return label;
+    }
+    return nil;
+}
+
 #pragma mark notification handling
 
 - (void)newBluetoothDevice : (NSNotification *)notification {

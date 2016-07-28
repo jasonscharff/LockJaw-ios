@@ -15,6 +15,7 @@
 #import "LKJBluetoothController.h"
 #import "LKJConnectionViewController.h"
 #import "LKJLockViewController.h"
+#import "LKJHistoryTableViewController.h"
 #import "LKJTabItem.h"
 #import "LKJTabView.h"
 
@@ -63,7 +64,7 @@ static const int kLKJHistoryLockIndex = 2;
     history.caption = @"History";
     history.image = [UIImage imageNamed:@"history"];
     
-    UIViewController *historyVC = [[UIViewController alloc]init];
+    LKJHistoryTableViewController *historyVC = [[LKJHistoryTableViewController alloc]init];
     
     
     self.tabView.tabItems = @[control, connect, history];
@@ -108,11 +109,7 @@ static const int kLKJHistoryLockIndex = 2;
     } else {
         [self.tabView selectButtonAtIndex:kLKJConnectLockIndex];
     }
-    
-                                 
-    
-    
-    
+
 }
 
 - (void)didReceiveMemoryWarning {

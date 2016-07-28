@@ -248,6 +248,7 @@ static const int kLKJExpirationTimeInterval = 30;
 
     
     [self.connectedPeripherals addObject:peripheral];
+    self.selectedBluetoothDeviceIndex = self.connectedPeripherals.count - 1;
 }
 
 
@@ -292,5 +293,8 @@ static const int kLKJExpirationTimeInterval = 30;
     }
 }
 
+- (NSString *)currentName {
+    return self.connectedPeripherals[self.selectedBluetoothDeviceIndex].name;
+}
 
 @end

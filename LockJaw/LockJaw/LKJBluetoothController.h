@@ -40,4 +40,6 @@ static NSString * const kLKJShouldRefreshConnectedBluetoothDevicesNotification =
 
 - (BOOL)isElgibleForLock;
 
+- (NSString *)currentName;
+
 @end

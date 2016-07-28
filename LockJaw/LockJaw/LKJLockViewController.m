@@ -10,8 +10,11 @@
 
 #import "AutolayoutHelper.h"
 
+#import <Realm/Realm.h>
+
 #import "LKJBluetoothController.h"
 #import "LKJLockView.h"
+#import "LKJHistory.h"
 
 @interface LKJLockViewController ()
 
@@ -59,11 +62,20 @@
   //  [self.lockView changeLockStatus];
     if([[LKJBluetoothController sharedBluetoothController]isElgibleForLock]) {
         [self.lockView changeLockStatus];
+        LKJHistory *historyObject = [[LKJHistory alloc]init];
+        historyObject.activatedDate = [NSDate date];
+        historyObject.lockName = [[LKJBluetoothController sharedBluetoothController]currentName];
         if([[LKJBluetoothController sharedBluetoothController]isLocked]) {
+            historyObject.isLockAction = NO;
             [[LKJBluetoothController sharedBluetoothController]unlockDevice];
         } else {
+            historyObject.isLockAction = YES;
             [[LKJBluetoothController sharedBluetoothController]lockDevice];
         }
+        
+        [[RLMRealm defaultRealm]beginWriteTransaction];
+        [[RLMRealm defaultRealm]addObject:historyObject];
+        [[RLMRealm defaultRealm]commitWriteTransaction];
     }
 }
 

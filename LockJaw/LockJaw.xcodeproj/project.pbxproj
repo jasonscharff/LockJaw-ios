@@ -11,6 +11,10 @@
 		BE2793D41D49A4B600E7036B /* LKJPeripheral.m in Sources */ = {isa = PBXBuildFile; fileRef = BE2793D31D49A4B600E7036B /* LKJPeripheral.m */; };
 		BE2793D71D49BEF500E7036B /* LKJBluetoothTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = BE2793D61D49BEF500E7036B /* LKJBluetoothTableViewCell.m */; };
 		BE2793DA1D49DCEE00E7036B /* LKJHistory.m in Sources */ = {isa = PBXBuildFile; fileRef = BE2793D91D49DCEE00E7036B /* LKJHistory.m */; };
+		BE2793DD1D49DD8300E7036B /* LKJHistoryTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = BE2793DC1D49DD8300E7036B /* LKJHistoryTableViewCell.m */; };
+		BE2793E01D49DE2600E7036B /* LKJCircleView.m in Sources */ = {isa = PBXBuildFile; fileRef = BE2793DF1D49DE2600E7036B /* LKJCircleView.m */; };
+		BE2793E31D49DFE700E7036B /* LKJDateFormatter.m in Sources */ = {isa = PBXBuildFile; fileRef = BE2793E21D49DFE700E7036B /* LKJDateFormatter.m */; };
+		BE2793E61D49E3AA00E7036B /* LKJHistoryTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BE2793E51D49E3AA00E7036B /* LKJHistoryTableViewController.m */; };
 		BE41C3151D4426FB0065130D /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = BE41C3141D4426FB0065130D /* main.m */; };
 		BE41C3181D4426FB0065130D /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = BE41C3171D4426FB0065130D /* AppDelegate.m */; };
 		BE41C3201D4426FB0065130D /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = BE41C31F1D4426FB0065130D /* Assets.xcassets */; };
@@ -38,6 +42,14 @@
 		BE2793D61D49BEF500E7036B /* LKJBluetoothTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LKJBluetoothTableViewCell.m; sourceTree = "<group>"; };
 		BE2793D81D49DCEE00E7036B /* LKJHistory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LKJHistory.h; sourceTree = "<group>"; };
 		BE2793D91D49DCEE00E7036B /* LKJHistory.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LKJHistory.m; sourceTree = "<group>"; };
+		BE2793DB1D49DD8300E7036B /* LKJHistoryTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LKJHistoryTableViewCell.h; sourceTree = "<group>"; };
+		BE2793DC1D49DD8300E7036B /* LKJHistoryTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LKJHistoryTableViewCell.m; sourceTree = "<group>"; };
+		BE2793DE1D49DE2600E7036B /* LKJCircleView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LKJCircleView.h; sourceTree = "<group>"; };
+		BE2793DF1D49DE2600E7036B /* LKJCircleView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LKJCircleView.m; sourceTree = "<group>"; };
+		BE2793E11D49DFE700E7036B /* LKJDateFormatter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LKJDateFormatter.h; sourceTree = "<group>"; };
+		BE2793E21D49DFE700E7036B /* LKJDateFormatter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LKJDateFormatter.m; sourceTree = "<group>"; };
+		BE2793E41D49E3AA00E7036B /* LKJHistoryTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LKJHistoryTableViewController.h; sourceTree = "<group>"; };
+		BE2793E51D49E3AA00E7036B /* LKJHistoryTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LKJHistoryTableViewController.m; sourceTree = "<group>"; };
 		BE41C3101D4426FB0065130D /* LockJaw.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = LockJaw.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		BE41C3141D4426FB0065130D /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		BE41C3161D4426FB0065130D /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -141,6 +153,8 @@
 		BE41C3301D4440ED0065130D /* ViewController */ = {
 			isa = PBXGroup;
 			children = (
+				BE2793E41D49E3AA00E7036B /* LKJHistoryTableViewController.h */,
+				BE2793E51D49E3AA00E7036B /* LKJHistoryTableViewController.m */,
 				BE44090A1D47B47100FC0E67 /* LKJTabViewController.h */,
 				BE44090B1D47B47100FC0E67 /* LKJTabViewController.m */,
 				BE67C5D21D46F04E0089B84E /* LKJLockViewController.h */,
@@ -154,6 +168,8 @@
 		BE41C3311D4440F60065130D /* StoreController */ = {
 			isa = PBXGroup;
 			children = (
+				BE2793E11D49DFE700E7036B /* LKJDateFormatter.h */,
+				BE2793E21D49DFE700E7036B /* LKJDateFormatter.m */,
 				BE41C32A1D4429E70065130D /* LKJBluetoothController.h */,
 				BE41C32B1D4429E70065130D /* LKJBluetoothController.m */,
 			);
@@ -185,6 +201,10 @@
 		BE4409141D47B54100FC0E67 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				BE2793DB1D49DD8300E7036B /* LKJHistoryTableViewCell.h */,
+				BE2793DC1D49DD8300E7036B /* LKJHistoryTableViewCell.m */,
+				BE2793DE1D49DE2600E7036B /* LKJCircleView.h */,
+				BE2793DF1D49DE2600E7036B /* LKJCircleView.m */,
 				BE2793D51D49BEF500E7036B /* LKJBluetoothTableViewCell.h */,
 				BE2793D61D49BEF500E7036B /* LKJBluetoothTableViewCell.m */,
 				BEEAA2581D488DC8005F81FD /* LKJLockView.h */,
@@ -351,6 +371,10 @@
 				BE44091B1D47B9BA00FC0E67 /* LKJCaptionedButton.m in Sources */,
 				BE44090F1D47B52100FC0E67 /* LKJTabView.m in Sources */,
 				BE41C3151D4426FB0065130D /* main.m in Sources */,
+				BE2793DD1D49DD8300E7036B /* LKJHistoryTableViewCell.m in Sources */,
+				BE2793E61D49E3AA00E7036B /* LKJHistoryTableViewController.m in Sources */,
+				BE2793E01D49DE2600E7036B /* LKJCircleView.m in Sources */,
+				BE2793E31D49DFE700E7036B /* LKJDateFormatter.m in Sources */,
 				BE4409171D47B7AA00FC0E67 /* LKJTabItem.m in Sources */,
 				BE89B5D61D45848B00315066 /* LKJConnectionViewController.m in Sources */,
 				BE41C32C1D4429E70065130D /* LKJBluetoothController.m in Sources */,
