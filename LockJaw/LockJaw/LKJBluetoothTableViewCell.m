@@ -49,13 +49,23 @@
 }
 
 - (void)commonInit {
+    self.layer.masksToBounds = YES;
+    self.backgroundColor = [UIColor clearColor];
     self.nameLabel = [UILabel new];
     self.nameLabel.font = [UIFont systemFontOfSize:16.0f];
     self.signalImageView = [UIImageView new];
     self.connectedLabel = [UILabel new];
     self.connectedLabel.font = [UIFont systemFontOfSize:14.0f];
+    UIView *spacer = [UIView new];
+    spacer.backgroundColor = [UIColor clearColor];
     
-    [AutolayoutHelper configureView:self.contentView
+    UIView *encapsulator = [UIView new];
+    encapsulator.layer.masksToBounds = YES;
+    encapsulator.layer.cornerRadius = 10.0f;
+    encapsulator.backgroundColor = [UIColor whiteColor];
+    encapsulator.translatesAutoresizingMaskIntoConstraints = YES;
+    
+    [AutolayoutHelper configureView:encapsulator
                            subViews:NSDictionaryOfVariableBindings(_nameLabel, _signalImageView, _connectedLabel)
                         constraints:@[@"H:|-4-[_signalImageView]-4-[_nameLabel]",
                                       @"H:[_connectedLabel]-4-|",
@@ -63,6 +73,13 @@
                                       @"X:_nameLabel.centerY == superview.centerY",
                                       @"X:_nameLabel.centerY == superview.centerY",
                                       @"X:_connectedLabel.centerY == superview.centerY"]];
+    
+    [AutolayoutHelper configureView:self.contentView
+                           subViews:NSDictionaryOfVariableBindings(encapsulator, spacer)
+                        constraints:@[@"H:|[encapsulator]|",
+                                      @"H:|[spacer]|",
+                                      @"V:|[encapsulator(50)][spacer(10)]|"]];
+    
     
     
 }

@@ -10,6 +10,8 @@
 
 #import "AutolayoutHelper.h"
 
+#import "UIColor+LKJColorPalette.h"
+
 #import "LKJBluetoothController.h"
 #import "LKJBluetoothTableViewCell.h"
 #import "LKJLockViewController.h"
@@ -25,6 +27,7 @@ static NSString * const kLKJConnectionCellIdentifier = @"com.locjkaw.ble.connect
 
 @property (nonatomic) NSInteger numberOfRowsInSectionZero;
 @property (nonatomic) NSInteger numberofRowsInSectionOne;
+@property (nonnull) UILabel *noDevicesLabel;
 
 @end
 
@@ -32,15 +35,43 @@ static NSString * const kLKJConnectionCellIdentifier = @"com.locjkaw.ble.connect
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    self.view.backgroundColor = [UIColor whiteColor];
-    self.numberOfRowsInSectionZero = 0;
-    self.numberofRowsInSectionOne = 0;
+    self.view.backgroundColor = [UIColor clearColor];
 
     self.tableView = [[UITableView alloc]init];
+    self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
+    
+    self.tableView.backgroundColor = [UIColor clearColor];
+    self.numberOfRowsInSectionZero = 0;
+    self.numberofRowsInSectionOne = 0;
+    
+    self.tableView.rowHeight = UITableViewAutomaticDimension;
+    self.tableView.estimatedRowHeight = 60;
+    
     [AutolayoutHelper configureView:self.view fillWithSubView:self.tableView];
     [self.tableView registerClass:[LKJBluetoothTableViewCell class] forCellReuseIdentifier:kLKJConnectionCellIdentifier];
     self.tableView.dataSource = self;
     self.tableView.delegate = self;
+    
+    UIView *backgroundView = [UIView new];
+    backgroundView.backgroundColor = [UIColor clearColor];
+    
+    self.tableView.backgroundView = backgroundView;
+    UIView *footerView = [UIView new];
+    footerView.backgroundColor = [UIColor clearColor];
+    self.tableView.tableFooterView = footerView;
+    self.tableView.tableHeaderView = nil;
+    self.noDevicesLabel = [UILabel new];
+    self.noDevicesLabel.font = [UIFont systemFontOfSize:18.0f weight:UIFontWeightBold];
+    self.noDevicesLabel.textColor = [UIColor lkj_goldColor];
+    
+    self.noDevicesLabel.text = @"No devices found.";
+    _noDevicesLabel.hidden = YES;
+    
+    [AutolayoutHelper configureView:self.view
+                           subViews:NSDictionaryOfVariableBindings(_noDevicesLabel)
+                        constraints:@[@"X:_noDevicesLabel.centerX == superview.centerX",
+                                      @"X:_noDevicesLabel.centerY == superview.centerY"]];
+    
     
     [[LKJBluetoothController sharedBluetoothController]beginScanning];
 }
@@ -83,6 +114,11 @@ static NSString * const kLKJConnectionCellIdentifier = @"com.locjkaw.ble.connect
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
+    if(self.numberofRowsInSectionOne == 0 && self.numberOfRowsInSectionZero == 0) {
+        self.noDevicesLabel.hidden = NO;
+    } else {
+        self.noDevicesLabel.hidden = YES;
+    }
     if(section == 0) {
         return self.numberOfRowsInSectionZero;
     } else if (section == 1) {

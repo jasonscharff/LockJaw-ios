@@ -15,6 +15,5 @@
 @property (nonatomic, weak)id<LKJTabViewControllerDelegate>delegate;
 
 
-- (BOOL)existsBluetoothDevice;
 
 @end
