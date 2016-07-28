@@ -9,6 +9,8 @@
 /* Begin PBXBuildFile section */
 		854F62B438D80B44C5C699B1 /* libPods-LockJaw.a in Frameworks */ = {isa = PBXBuildFile; fileRef = B47E13E885999C8C4F92F07D /* libPods-LockJaw.a */; };
 		BE2793D41D49A4B600E7036B /* LKJPeripheral.m in Sources */ = {isa = PBXBuildFile; fileRef = BE2793D31D49A4B600E7036B /* LKJPeripheral.m */; };
+		BE2793D71D49BEF500E7036B /* LKJBluetoothTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = BE2793D61D49BEF500E7036B /* LKJBluetoothTableViewCell.m */; };
+		BE2793DA1D49DCEE00E7036B /* LKJHistory.m in Sources */ = {isa = PBXBuildFile; fileRef = BE2793D91D49DCEE00E7036B /* LKJHistory.m */; };
 		BE41C3151D4426FB0065130D /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = BE41C3141D4426FB0065130D /* main.m */; };
 		BE41C3181D4426FB0065130D /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = BE41C3171D4426FB0065130D /* AppDelegate.m */; };
 		BE41C3201D4426FB0065130D /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = BE41C31F1D4426FB0065130D /* Assets.xcassets */; };
@@ -32,6 +34,10 @@
 		B47E13E885999C8C4F92F07D /* libPods-LockJaw.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-LockJaw.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		BE2793D21D49A4B600E7036B /* LKJPeripheral.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LKJPeripheral.h; sourceTree = "<group>"; };
 		BE2793D31D49A4B600E7036B /* LKJPeripheral.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LKJPeripheral.m; sourceTree = "<group>"; };
+		BE2793D51D49BEF500E7036B /* LKJBluetoothTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LKJBluetoothTableViewCell.h; sourceTree = "<group>"; };
+		BE2793D61D49BEF500E7036B /* LKJBluetoothTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LKJBluetoothTableViewCell.m; sourceTree = "<group>"; };
+		BE2793D81D49DCEE00E7036B /* LKJHistory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LKJHistory.h; sourceTree = "<group>"; };
+		BE2793D91D49DCEE00E7036B /* LKJHistory.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LKJHistory.m; sourceTree = "<group>"; };
 		BE41C3101D4426FB0065130D /* LockJaw.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = LockJaw.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		BE41C3141D4426FB0065130D /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		BE41C3161D4426FB0065130D /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -179,6 +185,8 @@
 		BE4409141D47B54100FC0E67 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				BE2793D51D49BEF500E7036B /* LKJBluetoothTableViewCell.h */,
+				BE2793D61D49BEF500E7036B /* LKJBluetoothTableViewCell.m */,
 				BEEAA2581D488DC8005F81FD /* LKJLockView.h */,
 				BEEAA2591D488DC8005F81FD /* LKJLockView.m */,
 				BE44090D1D47B52100FC0E67 /* LKJTabView.h */,
@@ -192,6 +200,8 @@
 		BE4409181D47B7AE00FC0E67 /* Objects */ = {
 			isa = PBXGroup;
 			children = (
+				BE2793D81D49DCEE00E7036B /* LKJHistory.h */,
+				BE2793D91D49DCEE00E7036B /* LKJHistory.m */,
 				BE2793D21D49A4B600E7036B /* LKJPeripheral.h */,
 				BE2793D31D49A4B600E7036B /* LKJPeripheral.m */,
 				BE4409151D47B7AA00FC0E67 /* LKJTabItem.h */,
@@ -331,8 +341,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				BE2793D71D49BEF500E7036B /* LKJBluetoothTableViewCell.m in Sources */,
 				BE41C3361D4441520065130D /* AutolayoutHelper.m in Sources */,
 				BEEAA25A1D488DC8005F81FD /* LKJLockView.m in Sources */,
+				BE2793DA1D49DCEE00E7036B /* LKJHistory.m in Sources */,
 				BE41C3371D4441520065130D /* LinearLayout.m in Sources */,
 				BE41C3181D4426FB0065130D /* AppDelegate.m in Sources */,
 				BE67C5D41D46F04E0089B84E /* LKJLockViewController.m in Sources */,

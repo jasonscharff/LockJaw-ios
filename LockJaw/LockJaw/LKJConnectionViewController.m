@@ -11,6 +11,7 @@
 #import "AutolayoutHelper.h"
 
 #import "LKJBluetoothController.h"
+#import "LKJBluetoothTableViewCell.h"
 #import "LKJLockViewController.h"
 #import "LKJTabViewController.h"
 
@@ -22,7 +23,8 @@ static NSString * const kLKJConnectionCellIdentifier = @"com.locjkaw.ble.connect
 
 @property (nonatomic, strong) UITableView *tableView;
 
-@property (nonatomic) NSInteger numberOfRows;
+@property (nonatomic) NSInteger numberOfRowsInSectionZero;
+@property (nonatomic) NSInteger numberofRowsInSectionOne;
 
 @end
 
@@ -31,10 +33,12 @@ static NSString * const kLKJConnectionCellIdentifier = @"com.locjkaw.ble.connect
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.view.backgroundColor = [UIColor whiteColor];
-    self.numberOfRows = 0;
+    self.numberOfRowsInSectionZero = 0;
+    self.numberofRowsInSectionOne = 0;
+
     self.tableView = [[UITableView alloc]init];
     [AutolayoutHelper configureView:self.view fillWithSubView:self.tableView];
-    [self.tableView registerClass:[UITableViewCell class] forCellReuseIdentifier:kLKJConnectionCellIdentifier];
+    [self.tableView registerClass:[LKJBluetoothTableViewCell class] forCellReuseIdentifier:kLKJConnectionCellIdentifier];
     self.tableView.dataSource = self;
     self.tableView.delegate = self;
     
@@ -72,15 +76,23 @@ static NSString * const kLKJConnectionCellIdentifier = @"com.locjkaw.ble.connect
 #pragma mark UITableViewDataSource
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:kLKJConnectionCellIdentifier];
+    LKJBluetoothTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:kLKJConnectionCellIdentifier];
     CBPeripheral *peripheral =[[LKJBluetoothController sharedBluetoothController]peripheralAtIndex:indexPath.row];
-    cell.textLabel.text = peripheral.name;
+    [cell configureWithPeripheral:peripheral andRSSI:@(-85)];
     return cell;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return self.numberOfRows;
-    
+    if(section == 0) {
+        return self.numberOfRowsInSectionZero;
+    } else if (section == 1) {
+        return self.numberofRowsInSectionOne;
+    }
+    return 0;
+}
+
+- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
+    return 2;
 }
 
 #pragma mark UITableViewDelegate
@@ -96,18 +108,36 @@ static NSString * const kLKJConnectionCellIdentifier = @"com.locjkaw.ble.connect
 
 - (void)newBluetoothDevice : (NSNotification *)notification {
     dispatch_async(dispatch_get_main_queue(), ^{
-        NSIndexPath *path = [NSIndexPath indexPathForRow:self.numberOfRows inSection:0];
+        NSInteger section = ((NSNumber *)notification.object).integerValue;
+        NSIndexPath *path;
+        if(section == 0) {
+            path = [NSIndexPath indexPathForRow:self.numberOfRowsInSectionZero inSection:section];
+        } else if (section ==1) {
+            path = [NSIndexPath indexPathForRow:self.numberofRowsInSectionOne inSection:section];
+        }
+
         [self.tableView beginUpdates];
-        self.numberOfRows += 1;
+        if(section == 0) {
+            self.numberOfRowsInSectionZero +=1;
+        } else if (section == 1) {
+            self.numberofRowsInSectionOne +=1;
+        } //else would be error.
         [self.tableView insertRowsAtIndexPaths:@[path] withRowAnimation:UITableViewRowAnimationAutomatic];
         [self.tableView endUpdates];
     });
 }
 
 - (void)lostBluetoothDevice : (NSNotification *)notification {
+    NSInteger section = ((NSNumber *)notification.object[@"section"]).intValue;
+    NSInteger row = ((NSNumber *)notification.object[@"row"]).intValue;
+    NSIndexPath *path = [NSIndexPath indexPathForRow:row inSection:section];
+    if(section == 0) {
+        self.numberOfRowsInSectionZero--;
+    } else {
+        self.numberofRowsInSectionOne++;
+    }
     dispatch_async(dispatch_get_main_queue(), ^{
         [self.tableView beginUpdates];
-        NSIndexPath *path = [NSIndexPath indexPathForRow:((NSNumber *)notification.object).intValue inSection:0];
         [self.tableView deleteRowsAtIndexPaths:@[path] withRowAnimation:UITableViewRowAnimationAutomatic];
         [self.tableView endUpdates];
     });
