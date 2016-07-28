@@ -35,7 +35,7 @@ static NSString * const kLKJHistoryReuseIdentifier = @"com.lockjaw.tableviewcell
     self.tableView.dataSource = self;
     self.tableView.allowsSelection = NO;
     [self.tableView registerClass:[LKJHistoryTableViewCell class] forCellReuseIdentifier:kLKJHistoryReuseIdentifier];
-    self.results = [[LKJHistory allObjects]sortedResultsUsingProperty:@"date" ascending:NO];
+    self.results = [[LKJHistory allObjects]sortedResultsUsingProperty:@"activatedDate" ascending:NO];
     
     [AutolayoutHelper configureView:self.view fillWithSubView:self.tableView];
     
