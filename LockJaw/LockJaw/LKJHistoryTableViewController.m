@@ -34,6 +34,10 @@ static NSString * const kLKJHistoryReuseIdentifier = @"com.lockjaw.tableviewcell
     self.tableView.delegate = self;
     self.tableView.dataSource = self;
     self.tableView.allowsSelection = NO;
+    self.tableView.backgroundColor = [UIColor clearColor];
+    UIView *footer = [UIView new];
+    footer.backgroundColor = [UIColor clearColor];
+    self.tableView.tableFooterView = footer;
     [self.tableView registerClass:[LKJHistoryTableViewCell class] forCellReuseIdentifier:kLKJHistoryReuseIdentifier];
     self.results = [[LKJHistory allObjects]sortedResultsUsingProperty:@"activatedDate" ascending:NO];
     
