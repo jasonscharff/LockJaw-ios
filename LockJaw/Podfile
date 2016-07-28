@@ -8,5 +8,6 @@ target 'LockJaw' do
   # Pods for LockJaw
 
 pod 'pop'
+pod 'Realm'
 
 end

@@ -9,6 +9,11 @@
 			<key>isShown</key>
 			<false/>
 		</dict>
+		<key>Realm.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
 		<key>pop.xcscheme</key>
 		<dict>
 			<key>isShown</key>
@@ -17,12 +22,17 @@
 	</dict>
 	<key>SuppressBuildableAutocreation</key>
 	<dict>
-		<key>347704E50671B96C34125E09D39063F0</key>
+		<key>2CFB1F6D35A42A02E9E724395830CFA3</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>822D54E309BB05B02A594FAC69FA9531</key>
+		<key>549BD8EDE9DA4AEE2BF93F411B3BEDD3</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>972A6AB02C53AA0509EDC7B1F1A4D405</key>
 		<dict>
 			<key>primary</key>
 			<true/>

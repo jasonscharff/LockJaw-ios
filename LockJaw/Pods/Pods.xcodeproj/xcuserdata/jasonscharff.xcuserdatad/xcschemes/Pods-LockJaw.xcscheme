@@ -14,7 +14,7 @@
             buildForArchiving = "YES">
             <BuildableReference
                BuildableIdentifier = 'primary'
-               BlueprintIdentifier = '822D54E309BB05B02A594FAC69FA9531'
+               BlueprintIdentifier = '549BD8EDE9DA4AEE2BF93F411B3BEDD3'
                BlueprintName = 'Pods-LockJaw'
                ReferencedContainer = 'container:Pods.xcodeproj'
                BuildableName = 'libPods-LockJaw.a'>
