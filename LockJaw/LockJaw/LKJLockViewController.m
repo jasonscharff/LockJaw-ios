@@ -15,6 +15,7 @@
 #import <Realm/Realm.h>
 
 #import "LKJBluetoothController.h"
+#import "LKJConnectionViewController.h"
 #import "LKJLockView.h"
 #import "LKJHistory.h"
 
@@ -62,6 +63,32 @@
         self.lockView.hidden = YES;
         self.noCapsusLabel.hidden = NO;
     }
+    [self registerForNotifications];
+}
+
+- (void)registerForNotifications {
+    NSDictionary *notifications = @{kLKJShouldRefreshConnectedBluetoothDevicesNotification : @"lostConnected:"};
+    [notifications enumerateKeysAndObjectsUsingBlock:^(id key, id obj, BOOL *stop) {
+        [[NSNotificationCenter defaultCenter] addObserver:self
+                                                 selector:NSSelectorFromString(obj)
+                                                     name:key
+                                                   object:nil];
+        
+    }];
+    
+}
+
+- (void)unregisterForNotifications {
+    [[NSNotificationCenter defaultCenter]removeObserver:self];
+}
+
+- (void)viewWillDisappear:(BOOL)animated {
+    [super viewWillDisappear:animated];
+    [self unregisterForNotifications];
+}
+
+- (void)dealloc {
+    [self unregisterForNotifications];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -98,6 +125,14 @@
         
         [self presentViewController:alertVC animated:YES completion:nil];
         
+    }
+}
+
+#pragma mark notifications
+
+- (void)lostConnected : (NSNotification *)notification {
+    if(self.delegate) {
+        [self.delegate viewController:self shouldTransitionToViewControllerOfClass:[LKJConnectionViewController class]];
     }
 }
 

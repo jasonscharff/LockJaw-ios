@@ -8,6 +8,10 @@
 
 #import <UIKit/UIKit.h>
 
+#import "LKJTabViewController.h"
+
 @interface LKJLockViewController : UIViewController
+
+@property (nonatomic, weak)id<LKJTabViewControllerDelegate>delegate;
 
 @end

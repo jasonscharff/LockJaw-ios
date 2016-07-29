@@ -26,9 +26,8 @@ static NSString * const kLKJShouldRefreshConnectedBluetoothDevicesNotification =
 
 + (instancetype)sharedBluetoothController;
 
-- (CBPeripheral *)peripheralAtIndex : (NSInteger)index;
-- (void)selectPeripheralAtIndex : (NSInteger)index;
-- (NSInteger)numberOfDevices;
+- (CBPeripheral *)peripheralAtIndex : (NSInteger)index inSection : (NSInteger)section;
+- (void)selectPeripheralAtIndex : (NSInteger)index inSection : (NSInteger)section;
 - (void)beginScanning;
 
 - (void)lockDevice;
@@ -45,6 +44,8 @@ static NSString * const kLKJShouldRefreshConnectedBluetoothDevicesNotification =
 - (BOOL)isConnectedToPeripheral : (CBPeripheral *)peripheral;
 
 - (BOOL)existsCurrentPeripheral;
+
+- (NSInteger)numberOfDevicesInSection : (NSInteger)section;
 
 
 

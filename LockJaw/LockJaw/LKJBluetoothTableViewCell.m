@@ -58,6 +58,7 @@
     self.signalImageView = [UIImageView new];
     self.connectedLabel = [UILabel new];
     self.connectedLabel.font = [UIFont systemFontOfSize:14.0f];
+    self.selectionStyle = UITableViewCellSelectionStyleNone;
     UIView *spacer = [UIView new];
     spacer.backgroundColor = [UIColor clearColor];
     

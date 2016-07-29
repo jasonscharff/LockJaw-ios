@@ -79,10 +79,24 @@ static NSString * const kLKJHeaderCellIdentifier = @"com.lockjaw.tableview.heade
     [[LKJBluetoothController sharedBluetoothController]beginScanning];
 }
 
+- (void)viewDidAppear:(BOOL)animated {
+    [super viewDidAppear:animated];
+    self.numberOfRowsInSectionZero = [[LKJBluetoothController sharedBluetoothController]numberOfDevicesInSection:0];
+    if(self.numberOfRowsInSectionZero > 0) {
+        self.numberOfRowsInSectionZero += 1;
+    }
+    self.numberofRowsInSectionOne = [[LKJBluetoothController sharedBluetoothController]numberOfDevicesInSection:1];
+    if(self.numberofRowsInSectionOne > 0) {
+        self.numberofRowsInSectionOne += 1;
+    }
+    [self.tableView reloadData];
+}
+
 - (void)registerForNotifications {
     NSDictionary *notifications = @{kLKJNewBluetoothDeviceDiscoveredNotification : @"newBluetoothDevice:",
                                     kLKJBluetoothDeviceLostNotification: @"lostBluetoothDevice:",
                                     kLKJBluetoothDeviceConnectedNotification : @"bluetoothConnected:"};
+    
     [notifications enumerateKeysAndObjectsUsingBlock:^(id key, id obj, BOOL *stop) {
         [[NSNotificationCenter defaultCenter] addObserver:self
                                                  selector:NSSelectorFromString(obj)
@@ -120,7 +134,7 @@ static NSString * const kLKJHeaderCellIdentifier = @"com.lockjaw.tableview.heade
         return header;
     } else {
         LKJBluetoothTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:kLKJConnectionCellIdentifier];
-        CBPeripheral *peripheral =[[LKJBluetoothController sharedBluetoothController]peripheralAtIndex:indexPath.row-1];
+        CBPeripheral *peripheral =[[LKJBluetoothController sharedBluetoothController]peripheralAtIndex:indexPath.row-1 inSection:indexPath.section];
         //TODO: Switch to delegation pattern for RSSI.
         [cell configureWithPeripheral:peripheral andRSSI:peripheral.RSSI];
         return cell;
@@ -151,7 +165,8 @@ static NSString * const kLKJHeaderCellIdentifier = @"com.lockjaw.tableview.heade
 #pragma mark UITableViewDelegate
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-    [[LKJBluetoothController sharedBluetoothController]selectPeripheralAtIndex:indexPath.row-1];
+    [[LKJBluetoothController sharedBluetoothController]selectPeripheralAtIndex:indexPath.row-1
+                                                                     inSection:indexPath.section];
     if(self.delegate) {
         [self.delegate viewController:self shouldTransitionToViewControllerOfClass:[LKJLockViewController class]];
     }
@@ -221,6 +236,5 @@ static NSString * const kLKJHeaderCellIdentifier = @"com.lockjaw.tableview.heade
         NSLog(@"device connected");
     });
 }
-
 
 @end
