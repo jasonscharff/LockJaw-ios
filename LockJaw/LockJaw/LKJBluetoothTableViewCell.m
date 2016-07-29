@@ -10,6 +10,8 @@
 
 #import "AutolayoutHelper.h"
 
+#import "LKJBluetoothController.h"
+
 @import CoreBluetooth;
 
 @interface LKJBluetoothTableViewCell()
@@ -105,7 +107,7 @@
         self.signalImageView.image = [UIImage imageNamed:@"onebar"];
     }
     self.nameLabel.text = peripheral.name;
-    if(peripheral.state == CBPeripheralStateConnected) {
+    if([[LKJBluetoothController sharedBluetoothController]isConnectedToPeripheral:peripheral]) {
         self.connectedLabel.text = @"Connected";
     } else {
         self.connectedLabel.text = @"Disconnected";

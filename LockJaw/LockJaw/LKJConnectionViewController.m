@@ -115,7 +115,7 @@ static NSString * const kLKJHeaderCellIdentifier = @"com.lockjaw.tableview.heade
         if(indexPath.section == 0) {
             header.text = @"My Devices";
         } else {
-            header.text = @"Connect New";
+            header.text = @"Connect Device";
         }
         return header;
     } else {

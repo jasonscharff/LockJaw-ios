@@ -42,4 +42,6 @@ static NSString * const kLKJShouldRefreshConnectedBluetoothDevicesNotification =
 
 - (NSString *)currentName;
 
+- (BOOL)isConnectedToPeripheral : (CBPeripheral *)peripheral;
+
 @end

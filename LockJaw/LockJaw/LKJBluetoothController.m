@@ -148,7 +148,7 @@ static const int kLKJExpirationTimeInterval = 30;
         if([existingPeripheral.uuid isEqualToString:peripheral.identifier.UUIDString]) {
             [self.connectedPeripherals addObject:peripheral];
             dispatch_async(self.notificationQueue, ^{
-                [[NSNotificationCenter defaultCenter]postNotificationName:kLKJNewBluetoothDeviceDiscoveredNotification object:@(1)];
+                [[NSNotificationCenter defaultCenter]postNotificationName:kLKJNewBluetoothDeviceDiscoveredNotification object:@(0)];
             });
         }
     }
@@ -157,7 +157,7 @@ static const int kLKJExpirationTimeInterval = 30;
         if(!self.discoveredDevices[peripheral.identifier]) {
             [self.discoveredDevicesArray addObject:peripheral];
             dispatch_async(self.notificationQueue, ^{
-                [[NSNotificationCenter defaultCenter]postNotificationName:kLKJNewBluetoothDeviceDiscoveredNotification object:@(0)];
+                [[NSNotificationCenter defaultCenter]postNotificationName:kLKJNewBluetoothDeviceDiscoveredNotification object:@(1)];
             });
             
         }
@@ -295,6 +295,10 @@ static const int kLKJExpirationTimeInterval = 30;
 
 - (NSString *)currentName {
     return self.connectedPeripherals[self.selectedBluetoothDeviceIndex].name;
+}
+
+- (BOOL)isConnectedToPeripheral : (CBPeripheral *)peripheral {
+    return [self.connectedPeripherals containsObject:peripheral];
 }
 
 @end
