@@ -121,7 +121,8 @@ static NSString * const kLKJHeaderCellIdentifier = @"com.lockjaw.tableview.heade
     } else {
         LKJBluetoothTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:kLKJConnectionCellIdentifier];
         CBPeripheral *peripheral =[[LKJBluetoothController sharedBluetoothController]peripheralAtIndex:indexPath.row-1];
-        [cell configureWithPeripheral:peripheral andRSSI:@(-85)];
+        //TODO: Switch to delegation pattern for RSSI.
+        [cell configureWithPeripheral:peripheral andRSSI:peripheral.RSSI];
         return cell;
     }
 
