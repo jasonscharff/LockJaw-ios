@@ -52,12 +52,16 @@
 }
 
 - (void)commonInit {
+    self.backgroundColor = [UIColor clearColor];
     self.dateLabel = [UILabel new];
     self.dateLabel.font = [UIFont systemFontOfSize:14.0f];
+    self.capsusName = [UILabel new];
     self.capsusName.font = [UIFont systemFontOfSize:16.0f];
     self.circleView = [[LKJCircleView alloc]init];
     
     UIView *encapsulator = [UIView new];
+    encapsulator.backgroundColor = [UIColor whiteColor];
+    encapsulator.layer.cornerRadius = 10.f;
     
     [AutolayoutHelper configureView:encapsulator
                            subViews:NSDictionaryOfVariableBindings(_dateLabel, _circleView, _capsusName)
@@ -65,7 +69,7 @@
                                       @"H:[_dateLabel]-4-|",
                                       @"X:_capsusName.centerY == superview.centerY",
                                       @"V:|-2-[_dateLabel]",
-                                      @"V:|-2-[_circleView]-2-|"]];
+                                      @"V:|-4-[_circleView]-4-|"]];
     
     NSLayoutConstraint *circleAspect = [NSLayoutConstraint constraintWithItem:self.circleView
                                                                     attribute:NSLayoutAttributeWidth
@@ -82,7 +86,7 @@
     
     [AutolayoutHelper configureView:self.contentView
                            subViews:NSDictionaryOfVariableBindings(encapsulator, spacer)
-                        constraints:@[@"H:|[spacer]|", @"H:|[encapsulator]|", @"V:|[encapsulator][spacer(10)]|"]];
+                        constraints:@[@"H:|[spacer]|", @"H:|[encapsulator]|", @"V:|[encapsulator(40)][spacer(10)]|"]];
     
     
     

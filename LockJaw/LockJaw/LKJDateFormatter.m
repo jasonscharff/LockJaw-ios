@@ -47,7 +47,7 @@
 }
 
 - (NSString *)historyDisplayFromDate : (NSDate *)date {
-    if([[NSCalendar currentCalendar] isDateInYesterday:date]) {
+    if([[NSCalendar currentCalendar] isDateInToday:date]) {
         return [[LKJDateFormatter sharedShortTimeFormatter]stringFromDate:date];
     } else {
         return [[LKJDateFormatter sharedShortDateFormatter]stringFromDate:date];
