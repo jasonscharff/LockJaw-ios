@@ -10,6 +10,8 @@
 
 #import "AutolayoutHelper.h"
 
+#import "UIColor+LKJColorPalette.h"
+
 #import <Realm/Realm.h>
 
 #import "LKJBluetoothController.h"
@@ -19,6 +21,7 @@
 @interface LKJLockViewController ()
 
 @property (nonatomic) LKJLockView *lockView;
+@property (nonatomic) UILabel *noCapsusLabel;
 
 
 @end
@@ -31,15 +34,34 @@
     
     self.lockView = [[LKJLockView alloc]init];
     [self.lockView addTarget:self action:@selector(changeLockStatus:) forControlEvents:UIControlEventTouchDown];
+    
+    self.noCapsusLabel = [UILabel new];
+    self.noCapsusLabel.text = @"No Capsus connected.";
+    self.noCapsusLabel.font = [UIFont systemFontOfSize:18.0f weight:UIFontWeightBold];
+    self.noCapsusLabel.textColor = [UIColor lkj_goldColor];
+    
     [AutolayoutHelper configureView:self.view
-                           subViews:NSDictionaryOfVariableBindings(_lockView)
+                           subViews:NSDictionaryOfVariableBindings(_lockView, _noCapsusLabel)
                         constraints:@[@"X:_lockView.centerY == superview.centerY",
                                       @"H:|-10-[_lockView]-10-|",
-                                      @"X:_lockView.width == _lockView.height"]];
+                                      @"X:_lockView.width == _lockView.height",
+                                      @"X:_noCapsusLabel.centerX == superview.centerX",
+                                      @"X:_noCapsusLabel.centerY == superview.centerY"]];
     
-    
+
     
     // Do any additional setup after loading the view.
+}
+
+- (void)viewDidAppear:(BOOL)animated {
+    [super viewDidAppear:animated];
+    if([[LKJBluetoothController sharedBluetoothController]existsBluetoothDevice]) {
+        self.lockView.hidden = NO;
+        self.noCapsusLabel.hidden = YES;
+    } else {
+        self.lockView.hidden = YES;
+        self.noCapsusLabel.hidden = NO;
+    }
 }
 
 - (void)didReceiveMemoryWarning {

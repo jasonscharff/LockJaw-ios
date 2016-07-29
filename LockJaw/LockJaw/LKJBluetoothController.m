@@ -297,6 +297,10 @@ static const int kLKJExpirationTimeInterval = 30;
     return self.connectedPeripherals[self.selectedBluetoothDeviceIndex].name;
 }
 
+- (BOOL)existsCurrentPeripheral {
+    return (self.selectedBluetoothDeviceIndex > 0);
+}
+
 - (BOOL)isConnectedToPeripheral : (CBPeripheral *)peripheral {
     return [self.connectedPeripherals containsObject:peripheral];
 }
