@@ -29,6 +29,7 @@
 		BE4409171D47B7AA00FC0E67 /* LKJTabItem.m in Sources */ = {isa = PBXBuildFile; fileRef = BE4409161D47B7AA00FC0E67 /* LKJTabItem.m */; };
 		BE44091B1D47B9BA00FC0E67 /* LKJCaptionedButton.m in Sources */ = {isa = PBXBuildFile; fileRef = BE44091A1D47B9BA00FC0E67 /* LKJCaptionedButton.m */; };
 		BE67C5D41D46F04E0089B84E /* LKJLockViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BE67C5D31D46F04E0089B84E /* LKJLockViewController.m */; };
+		BE77C4A11D4AD56D006778D0 /* LKJSectionHeaderTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = BE77C4A01D4AD56D006778D0 /* LKJSectionHeaderTableViewCell.m */; };
 		BE89B5D61D45848B00315066 /* LKJConnectionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BE89B5D51D45848B00315066 /* LKJConnectionViewController.m */; };
 		BEEAA25A1D488DC8005F81FD /* LKJLockView.m in Sources */ = {isa = PBXBuildFile; fileRef = BEEAA2591D488DC8005F81FD /* LKJLockView.m */; };
 /* End PBXBuildFile section */
@@ -77,6 +78,8 @@
 		BE44091A1D47B9BA00FC0E67 /* LKJCaptionedButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = LKJCaptionedButton.m; path = Assets.xcassets/LKJCaptionedButton.m; sourceTree = "<group>"; };
 		BE67C5D21D46F04E0089B84E /* LKJLockViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LKJLockViewController.h; sourceTree = "<group>"; };
 		BE67C5D31D46F04E0089B84E /* LKJLockViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LKJLockViewController.m; sourceTree = "<group>"; };
+		BE77C49F1D4AD56D006778D0 /* LKJSectionHeaderTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LKJSectionHeaderTableViewCell.h; sourceTree = "<group>"; };
+		BE77C4A01D4AD56D006778D0 /* LKJSectionHeaderTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LKJSectionHeaderTableViewCell.m; sourceTree = "<group>"; };
 		BE89B5D41D45848B00315066 /* LKJConnectionViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LKJConnectionViewController.h; sourceTree = "<group>"; };
 		BE89B5D51D45848B00315066 /* LKJConnectionViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LKJConnectionViewController.m; sourceTree = "<group>"; };
 		BEEAA2581D488DC8005F81FD /* LKJLockView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LKJLockView.h; sourceTree = "<group>"; };
@@ -201,6 +204,8 @@
 		BE4409141D47B54100FC0E67 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				BE77C49F1D4AD56D006778D0 /* LKJSectionHeaderTableViewCell.h */,
+				BE77C4A01D4AD56D006778D0 /* LKJSectionHeaderTableViewCell.m */,
 				BE2793DB1D49DD8300E7036B /* LKJHistoryTableViewCell.h */,
 				BE2793DC1D49DD8300E7036B /* LKJHistoryTableViewCell.m */,
 				BE2793DE1D49DE2600E7036B /* LKJCircleView.h */,
@@ -363,6 +368,7 @@
 			files = (
 				BE2793D71D49BEF500E7036B /* LKJBluetoothTableViewCell.m in Sources */,
 				BE41C3361D4441520065130D /* AutolayoutHelper.m in Sources */,
+				BE77C4A11D4AD56D006778D0 /* LKJSectionHeaderTableViewCell.m in Sources */,
 				BEEAA25A1D488DC8005F81FD /* LKJLockView.m in Sources */,
 				BE2793DA1D49DCEE00E7036B /* LKJHistory.m in Sources */,
 				BE41C3371D4441520065130D /* LinearLayout.m in Sources */,

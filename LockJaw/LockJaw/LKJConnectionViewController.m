@@ -15,11 +15,13 @@
 #import "LKJBluetoothController.h"
 #import "LKJBluetoothTableViewCell.h"
 #import "LKJLockViewController.h"
+#import "LKJSectionHeaderTableViewCell.h"
 #import "LKJTabViewController.h"
 
 @import CoreBluetooth;
 
 static NSString * const kLKJConnectionCellIdentifier = @"com.locjkaw.ble.connection.cell";
+static NSString * const kLKJHeaderCellIdentifier = @"com.lockjaw.tableview.header";
 
 @interface LKJConnectionViewController () <UITableViewDelegate, UITableViewDataSource>
 
@@ -49,6 +51,7 @@ static NSString * const kLKJConnectionCellIdentifier = @"com.locjkaw.ble.connect
     
     [AutolayoutHelper configureView:self.view fillWithSubView:self.tableView];
     [self.tableView registerClass:[LKJBluetoothTableViewCell class] forCellReuseIdentifier:kLKJConnectionCellIdentifier];
+    [self.tableView registerClass:[LKJSectionHeaderTableViewCell class] forCellReuseIdentifier:kLKJHeaderCellIdentifier];
     self.tableView.dataSource = self;
     self.tableView.delegate = self;
     
@@ -107,10 +110,21 @@ static NSString * const kLKJConnectionCellIdentifier = @"com.locjkaw.ble.connect
 #pragma mark UITableViewDataSource
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    LKJBluetoothTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:kLKJConnectionCellIdentifier];
-    CBPeripheral *peripheral =[[LKJBluetoothController sharedBluetoothController]peripheralAtIndex:indexPath.row];
-    [cell configureWithPeripheral:peripheral andRSSI:@(-85)];
-    return cell;
+    if(indexPath.row == 0) {
+        LKJSectionHeaderTableViewCell *header = [tableView dequeueReusableCellWithIdentifier:kLKJHeaderCellIdentifier];
+        if(indexPath.section == 0) {
+            header.text = @"My Devices";
+        } else {
+            header.text = @"Connect New";
+        }
+        return header;
+    } else {
+        LKJBluetoothTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:kLKJConnectionCellIdentifier];
+        CBPeripheral *peripheral =[[LKJBluetoothController sharedBluetoothController]peripheralAtIndex:indexPath.row-1];
+        [cell configureWithPeripheral:peripheral andRSSI:@(-85)];
+        return cell;
+    }
+
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
@@ -121,8 +135,10 @@ static NSString * const kLKJConnectionCellIdentifier = @"com.locjkaw.ble.connect
     }
     if(section == 0) {
         return self.numberOfRowsInSectionZero;
+        
     } else if (section == 1) {
         return self.numberofRowsInSectionOne;
+        
     }
     return 0;
 }
@@ -134,23 +150,10 @@ static NSString * const kLKJConnectionCellIdentifier = @"com.locjkaw.ble.connect
 #pragma mark UITableViewDelegate
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-    [[LKJBluetoothController sharedBluetoothController]selectPeripheralAtIndex:indexPath.row];
+    [[LKJBluetoothController sharedBluetoothController]selectPeripheralAtIndex:indexPath.row-1];
     if(self.delegate) {
         [self.delegate viewController:self shouldTransitionToViewControllerOfClass:[LKJLockViewController class]];
     }
-}
-
-- (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section {
-    UILabel *label = [UILabel new];
-    label.font = [UIFont systemFontOfSize:20.0f];
-    if(section == 0) {
-        label.text = @"My Devices";
-        return label;
-    } else if (section == 1) {
-        label.text = @"Discover";
-        return label;
-    }
-    return nil;
 }
 
 #pragma mark notification handling
@@ -160,17 +163,36 @@ static NSString * const kLKJConnectionCellIdentifier = @"com.locjkaw.ble.connect
         NSInteger section = ((NSNumber *)notification.object).integerValue;
         NSIndexPath *path;
         if(section == 0) {
-            path = [NSIndexPath indexPathForRow:self.numberOfRowsInSectionZero inSection:section];
-        } else if (section ==1) {
-            path = [NSIndexPath indexPathForRow:self.numberofRowsInSectionOne inSection:section];
+            if(self.numberOfRowsInSectionZero == 0) {
+                path = [NSIndexPath indexPathForRow:self.numberOfRowsInSectionZero+1 inSection:section];
+                NSIndexPath *headerPath = [NSIndexPath indexPathForRow:0 inSection:section];
+                self.numberOfRowsInSectionZero += 1;
+                [self.tableView beginUpdates];
+                [self.tableView insertRowsAtIndexPaths:@[headerPath] withRowAnimation:UITableViewRowAnimationAutomatic];
+                [self.tableView endUpdates];
+                
+            } else {
+                path = [NSIndexPath indexPathForRow:self.numberOfRowsInSectionZero inSection:section];
+            }
+        } else if (section == 1) {
+            if(self.numberofRowsInSectionOne == 0) {
+                path = [NSIndexPath indexPathForRow:self.numberofRowsInSectionOne+1 inSection:section];
+                NSIndexPath *headerPath = [NSIndexPath indexPathForRow:0 inSection:section];
+                self.numberofRowsInSectionOne += 1;
+                [self.tableView beginUpdates];
+                [self.tableView insertRowsAtIndexPaths:@[headerPath] withRowAnimation:UITableViewRowAnimationAutomatic];
+                [self.tableView endUpdates];
+            } else {
+                path = [NSIndexPath indexPathForRow:self.numberofRowsInSectionOne inSection:section];
+            }
         }
 
-        [self.tableView beginUpdates];
         if(section == 0) {
             self.numberOfRowsInSectionZero +=1;
         } else if (section == 1) {
             self.numberofRowsInSectionOne +=1;
         } //else would be error.
+        [self.tableView beginUpdates];
         [self.tableView insertRowsAtIndexPaths:@[path] withRowAnimation:UITableViewRowAnimationAutomatic];
         [self.tableView endUpdates];
     });
